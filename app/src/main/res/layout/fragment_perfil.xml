@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris"
+    tools:context=".ui.Perfil">
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/feyvalores">
+    </ImageView>
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/escudo">
+    </ImageView>
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="208dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/isc">
+    </ImageView>
+
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/androide">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/login"
+        android:layout_width="164dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="123dp"
+        android:src="@drawable/perfil"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="16dp">
+
+    </ImageView>
+
+    <EditText
+        android:id="@+id/NombreCompleto"
+        android:layout_width="292dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/login"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="60dp"
+        android:background="#FFFFFF"
+        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:drawablePadding="16dp"
+        android:hint="Nombre Completo"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="178dp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/Puesto"
+        android:layout_width="292dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/NombreCompleto"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:background="#FFFFFF"
+        android:drawableLeft="@drawable/baseline_star_24"
+        android:drawablePadding="16dp"
+        android:hint="Puesto"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="258dp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/CorreoElectronico"
+        android:layout_width="292dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/Puesto"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:background="#FFFFFF"
+        android:drawableLeft="@drawable/baseline_alternate_email_24"
+        android:drawablePadding="16dp"
+        android:hint="Correo Electronico"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="341dp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/NumeroCelular"
+        android:layout_width="292dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/CorreoElectronico"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:background="#FFFFFF"
+        android:drawableLeft="@drawable/baseline_phone_android_24"
+        android:drawablePadding="16dp"
+        android:hint="Numero Celular"
+        android:inputType="number"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="422dp">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/ButtonPerfil"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="139dp"
+        android:backgroundTint="@color/teal_700"
+        android:text="Guardar"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="504dp">
+
+    </Button>
+</RelativeLayout>
+
+
+
