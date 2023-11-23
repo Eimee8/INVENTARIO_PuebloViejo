@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/baseline_edit_attributes_24"
-            android:title="Activos" />
+            android:title="Equipos" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/baseline_event_24"
