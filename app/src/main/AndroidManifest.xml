@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.INVENTARIO_PuebloViejo"
         tools:targetApi="31">
+
         <activity
             android:name=".Secretarias"
             android:label="Secretarias"
@@ -44,11 +45,15 @@
             android:name=".Egresos"
             android:exported="false"
             android:label="Egresos" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.INVENTARIO_PuebloViejo.NoActionBar">
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
