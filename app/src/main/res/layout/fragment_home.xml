@@ -786,13 +786,14 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
-                <ImageButton
+                <ImageView
+                    android:id="@+id/informatica"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/informatica">
-                </ImageButton>
+                </ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -817,13 +818,14 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
-                <ImageButton
+                <ImageView
+                    android:id="@+id/trabajosocial"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/trabajosocial">
-                </ImageButton>
+                </ImageView>
 
                 <TextView
                     android:layout_width="match_parent"

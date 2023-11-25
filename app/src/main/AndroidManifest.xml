@@ -13,29 +13,61 @@
         android:theme="@style/Theme.INVENTARIO_PuebloViejo"
         tools:targetApi="31">
         <activity
-            android:name=".Inst_Mujer"
-            android:label="Instituto De La Mujer"
+            android:name=".Trabajo_Social"
+            android:label="Trabajo Social"
             android:exported="false" />
+        <activity
+            android:name=".Informatica"
+            android:label="Informatica"
+            android:exported="false" />
+        <activity
+            android:name=".D_Social"
+            android:label="Desarrollo Social"
+            android:exported="false" />
+        <activity
+            android:name=".Transparencia"
+            android:label="Transparencia"
+            android:exported="false" />
+        <activity
+            android:name=".Panteones"
+            android:label="Panteones"
+            android:exported="false" />
+        <activity
+            android:name=".Alcoholes"
+            android:label="Alcoholes"
+            android:exported="false" />
+        <activity
+            android:name=".Comercio"
+            android:label="Comercio"
+            android:exported="false" />
+        <activity
+            android:name=".Comandancia"
+            android:label="Comandancia"
+            android:exported="false" />
+        <activity
+            android:name=".Inst_Mujer"
+            android:exported="false"
+            android:label="Instituto De La Mujer" />
         <activity
             android:name=".Religion"
-            android:label="Religion"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Religion" />
         <activity
             android:name=".Rh"
-            android:label="Recursos Humanos"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Recursos Humanos" />
         <activity
             android:name=".Obra_Publica"
-            android:label="Obra Publica"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Obra Publica" />
         <activity
             android:name=".A_Tecnologia"
-            android:label="Area De Tecnologia"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Area De Tecnologia" />
         <activity
             android:name=".Regidores"
-            android:label="Regidores"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Regidores" />
         <activity
             android:name=".Secretarias"
             android:exported="false"
