@@ -147,8 +147,7 @@
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
-                    android:background="@drawable/tesoreria">
-                </ImageButton>
+                    android:background="@drawable/tesoreria"></ImageButton>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -158,8 +157,7 @@
                     android:text="Tesoreria"
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
-                    android:textStyle="normal">
-                </TextView>
+                    android:textStyle="normal"></TextView>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -179,8 +177,7 @@
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
-                    android:background="@drawable/cajas">
-                </ImageButton>
+                    android:background="@drawable/cajas"></ImageButton>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -190,10 +187,10 @@
                     android:text="Cajas"
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
-                    android:textStyle="normal">
-                </TextView>
+                    android:textStyle="normal"></TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -356,14 +353,14 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/regidores"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/regidores">
-                </ImageButton>
+                </ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -388,14 +385,14 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/areadetecnologia"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/areadetecnologia">
-                </ImageButton>
+                </ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -428,14 +425,14 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/obraspublicas"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/obraspublicas">
-                </ImageButton>
+                </ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -460,14 +457,14 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/rrhh"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/rrhh">
-                </ImageButton>
+                </ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -500,14 +497,14 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/religion"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/religion">
-                </ImageButton>
+                </ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -532,14 +529,14 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/mujer"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/mujer">
-                </ImageButton>
+                </ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
