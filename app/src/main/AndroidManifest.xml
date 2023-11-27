@@ -12,38 +12,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.INVENTARIO_PuebloViejo"
         tools:targetApi="31">
+
+
         <activity
             android:name=".Trabajo_Social"
-            android:label="Trabajo Social"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Trabajo Social" />
         <activity
             android:name=".Informatica"
-            android:label="Informatica"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Informatica" />
         <activity
             android:name=".D_Social"
-            android:label="Desarrollo Social"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Desarrollo Social" />
         <activity
             android:name=".Transparencia"
-            android:label="Transparencia"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Transparencia" />
         <activity
             android:name=".Panteones"
-            android:label="Panteones"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Panteones" />
         <activity
             android:name=".Alcoholes"
-            android:label="Alcoholes"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Alcoholes" />
         <activity
             android:name=".Comercio"
-            android:label="Comercio"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Comercio" />
         <activity
             android:name=".Comandancia"
-            android:label="Comandancia"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Comandancia" />
         <activity
             android:name=".Inst_Mujer"
             android:exported="false"
@@ -100,11 +102,22 @@
             android:name=".Egresos"
             android:exported="false"
             android:label="Egresos" />
+
         <activity
             android:name=".MainActivity"
-            android:exported="true"
+            android:theme="@style/Theme.INVENTARIO_PuebloViejo.NoActionBar"
             android:label="@string/app_name"
-            android:theme="@style/Theme.INVENTARIO_PuebloViejo.NoActionBar">
+            android:exported="false" />
+        <activity
+            android:name=".Inicio_Sesion"
+            android:exported="false"
+            android:theme="@style/Theme.INVENTARIO_PuebloViejo.NoActionBar" />
+
+        <activity
+            android:name=".Splash_Screen"
+            android:theme="@style/Theme.INVENTARIO_PuebloViejo.NoActionBar"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
