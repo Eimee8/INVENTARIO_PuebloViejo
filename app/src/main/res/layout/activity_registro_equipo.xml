@@ -103,9 +103,7 @@
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:inputType="text"
-        android:hint="Marca"
-        android:drawableLeft="@drawable/baseline_local_offer_24"
-        android:drawablePadding="5dp"/>
+        android:hint="Marca"/>
 
     <TextView
         android:id="@+id/TVPropietario"
