@@ -9,14 +9,12 @@
 
       <TextView
           android:id="@+id/text_agenda2"
-          android:layout_width="119dp"
-          android:layout_height="20dp"
+          android:layout_width="120dp"
+          android:layout_height="25dp"
           android:layout_alignParentStart="true"
           android:layout_alignParentTop="true"
-          android:layout_alignParentEnd="true"
           android:layout_marginStart="16dp"
-          android:layout_marginTop="20dp"
-          android:layout_marginEnd="276dp"
+          android:layout_marginTop="50dp"
           android:text="No° de Serie"
           android:textAlignment="center"
           android:textColor="@color/purple_700"
@@ -53,8 +51,8 @@
 
       <TextView
           android:id="@+id/tipo"
-          android:layout_width="43dp"
-          android:layout_height="22dp"
+          android:layout_width="50dp"
+          android:layout_height="25dp"
           android:layout_below="@+id/ingresarid"
           android:layout_alignParentStart="true"
           android:layout_alignParentEnd="true"
@@ -71,138 +69,23 @@
           app:layout_constraintStart_toStartOf="parent"
           tools:layout_editor_absoluteY="55dp" />
 
-      <GridLayout
-          android:id="@+id/tipo1"
-          android:layout_width="186dp"
-          android:layout_height="94dp"
+      <Spinner
+          android:id="@+id/spinner5"
+          android:layout_width="187dp"
+          android:layout_height="30dp"
           android:layout_below="@+id/tipo"
           android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_gravity="center_horizontal"
           android:layout_marginStart="16dp"
-          android:layout_marginTop="10dp"
-          android:layout_marginEnd="209dp"
-          android:columnCount="2"
-          android:columnOrderPreserved="false"
-          android:rowCount="4"
-          tools:layout_editor_absoluteX="207dp"
-          tools:layout_editor_absoluteY="84dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="68dp"
-                android:layout_height="68dp"
-                android:layout_margin="20dp"
-                android:layout_marginLeft="10dp"
-                app:cardBackgroundColor="#30ffffff"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="5dp">
-
-                  <ImageButton
-                      android:id="@+id/modem"
-                      android:layout_width="60dp"
-                      android:layout_height="60dp"
-                      android:layout_gravity="center"
-                      android:layout_marginTop="-0dp"
-                      android:background="@drawable/modem">
-
-                  </ImageButton>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="68dp"
-                android:layout_height="68dp"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:layout_margin="20dp"
-                android:layout_marginLeft="10dp"
-                app:cardBackgroundColor="#30ffffff"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="5dp">
-
-                  <ImageButton
-                      android:id="@+id/pantalla"
-                      android:layout_width="60dp"
-                      android:layout_height="60dp"
-                      android:layout_gravity="center"
-                      android:layout_marginTop="-0dp"
-                      android:background="@drawable/pantalla">
-
-                  </ImageButton>
-            </androidx.cardview.widget.CardView>
-      </GridLayout>
-
-      <GridLayout
-          android:id="@+id/tipo2"
-          android:layout_width="186dp"
-          android:layout_height="98dp"
-          android:layout_below="@+id/tipo1"
-          android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_gravity="center_horizontal"
-          android:layout_marginStart="15dp"
-          android:layout_marginTop="10dp"
-          android:layout_marginEnd="210dp"
-          android:columnCount="2"
-          android:columnOrderPreserved="false"
-          android:rowCount="4"
-          tools:layout_editor_absoluteX="207dp"
-          tools:layout_editor_absoluteY="178dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="68dp"
-                android:layout_height="68dp"
-                android:layout_margin="20dp"
-                android:layout_marginLeft="10dp"
-                app:cardBackgroundColor="#30ffffff"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="5dp">
-
-
-                  <ImageButton
-                      android:id="@+id/cpu"
-                      android:layout_width="60dp"
-                      android:layout_height="60dp"
-                      android:layout_gravity="center"
-                      android:layout_marginTop="-0dp"
-                      android:background="@drawable/cpu">
-
-                  </ImageButton>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="68dp"
-                android:layout_height="68dp"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:layout_margin="20dp"
-                android:layout_marginLeft="10dp"
-                app:cardBackgroundColor="#30ffffff"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="5dp">
-
-                  <ImageButton
-                      android:id="@+id/impresora"
-                      android:layout_width="60dp"
-                      android:layout_height="60dp"
-                      android:layout_gravity="center"
-                      android:layout_marginTop="-0dp"
-                      android:background="@drawable/impresora">
-
-                  </ImageButton>
-            </androidx.cardview.widget.CardView>
-      </GridLayout>
+          android:layout_marginTop="20dp"/>
 
       <TextView
           android:id="@+id/estatus"
           android:layout_width="85dp"
-          android:layout_height="23dp"
-          android:layout_below="@+id/tipo2"
+          android:layout_height="25dp"
+          android:layout_below="@+id/spinner5"
           android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
           android:layout_marginStart="70dp"
-          android:layout_marginTop="10dp"
-          android:layout_marginEnd="258dp"
+          android:layout_marginTop="20dp"
           android:text="Estatus"
           android:textAlignment="center"
           android:textColor="@color/purple_700"
@@ -214,65 +97,25 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintVertical_bias="0.465" />
 
-      <Button
-          android:id="@+id/mantenimiento"
-          android:layout_width="150dp"
-          android:layout_height="35dp"
+      <Spinner
+          android:id="@+id/spinner4"
+          android:layout_width="187dp"
+          android:layout_height="30dp"
           android:layout_below="@+id/estatus"
           android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_marginStart="32dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginEnd="228dp"
-          android:text="MANTENIMIENTO"
-          android:textColor="@color/white"
-          android:textSize="12dp"
-          android:textStyle="bold"
-          tools:layout_editor_absoluteX="219dp"
-          tools:layout_editor_absoluteY="322dp" />
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="20dp">
 
-      <Button
-          android:id="@+id/reparacion"
-          android:layout_width="150dp"
-          android:layout_height="35dp"
-          android:layout_below="@+id/mantenimiento"
-          android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_marginStart="32dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginEnd="227dp"
-          android:text="REPARACION"
-          android:textColor="@color/white"
-          android:textSize="12dp"
-          android:textStyle="bold"
-          tools:layout_editor_absoluteX="236dp"
-          tools:layout_editor_absoluteY="365dp" />
-
-      <Button
-          android:id="@+id/sustitucion"
-          android:layout_width="150dp"
-          android:layout_height="35dp"
-          android:layout_below="@+id/reparacion"
-          android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_marginStart="32dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginEnd="230dp"
-          android:text="SUSTITUCION"
-          android:textColor="@color/white"
-          android:textSize="12dp"
-          android:textStyle="bold"
-          tools:layout_editor_absoluteX="236dp"
-          tools:layout_editor_absoluteY="411dp" />
+      </Spinner>
 
       <TextView
           android:id="@+id/ingresardescripcion"
-          android:layout_width="wrap_content"
-          android:layout_height="20dp"
+          android:layout_width="120dp"
+          android:layout_height="25dp"
           android:layout_alignParentTop="true"
           android:layout_alignParentEnd="true"
-          android:layout_marginTop="20dp"
-          android:layout_marginEnd="72dp"
+          android:layout_marginTop="50dp"
+          android:layout_marginEnd="50dp"
           android:text="Descripcion"
           android:textAlignment="center"
           android:textColor="@color/purple_700"
@@ -310,14 +153,12 @@
 
       <Button
           android:id="@+id/fchllegada"
-          android:layout_width="180dp"
-          android:layout_height="35dp"
+          android:layout_width="187dp"
+          android:layout_height="40dp"
+          android:layout_below="@+id/spinner4"
           android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_alignParentBottom="true"
-          android:layout_marginStart="15dp"
-          android:layout_marginEnd="213dp"
-          android:layout_marginBottom="245dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="20dp"
           android:text="Fecha de llegada"
           android:textColor="@color/white"
           android:textSize="12dp"
@@ -327,14 +168,12 @@
 
       <EditText
           android:id="@+id/fechadellegada"
-          android:layout_width="170dp"
+          android:layout_width="187dp"
           android:layout_height="30dp"
+          android:layout_below="@+id/fchllegada"
           android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_alignParentBottom="true"
-          android:layout_marginStart="15dp"
-          android:layout_marginEnd="212dp"
-          android:layout_marginBottom="204dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="20dp"
           android:background="#e8e6f1"
           android:hint="Fecha de Llegada"
           android:padding="10dp"
@@ -350,14 +189,12 @@
 
       <Button
           android:id="@+id/fchentrega"
-          android:layout_width="180dp"
-          android:layout_height="35dp"
+          android:layout_width="187dp"
+          android:layout_height="40dp"
+          android:layout_below="@+id/fechadellegada"
           android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_alignParentBottom="true"
-          android:layout_marginStart="214dp"
-          android:layout_marginEnd="20dp"
-          android:layout_marginBottom="244dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="20dp"
           android:text="FECHA DE ENTREGA "
           android:textColor="@color/white"
           android:textSize="12dp"
@@ -367,14 +204,12 @@
 
       <EditText
           android:id="@+id/fechadentrega"
-          android:layout_width="178dp"
+          android:layout_width="187dp"
           android:layout_height="30dp"
+          android:layout_below="@+id/fchentrega"
           android:layout_alignParentStart="true"
-          android:layout_alignParentEnd="true"
-          android:layout_alignParentBottom="true"
-          android:layout_marginStart="213dp"
-          android:layout_marginEnd="20dp"
-          android:layout_marginBottom="203dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="20dp"
           android:background="#e8e6f1"
           android:hint="Fecha de Entrega"
           android:padding="10dp"
@@ -395,9 +230,9 @@
           android:layout_alignParentStart="true"
           android:layout_alignParentEnd="true"
           android:layout_alignParentBottom="true"
-          android:layout_marginStart="155dp"
-          android:layout_marginEnd="155dp"
-          android:layout_marginBottom="112dp"
+          android:layout_marginStart="156dp"
+          android:layout_marginEnd="154dp"
+          android:layout_marginBottom="153dp"
           android:text="GUARDAR"
           android:textColor="@color/white"
           android:textSize="12dp"

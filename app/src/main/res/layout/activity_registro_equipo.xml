@@ -47,7 +47,7 @@
         android:gravity="center"/>
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/Tipo"
         android:layout_width="190dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -55,7 +55,9 @@
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:inputType="text"
-        android:hint="Tipo" />
+        android:hint="Tipo"
+        android:spinnerMode="dropdown"
+        />
 
     <TextView
         android:id="@+id/TVEstatus"
@@ -72,7 +74,7 @@
         android:gravity="center"/>
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/Status"
         android:layout_width="190dp"
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"
@@ -95,7 +97,7 @@
         android:gravity="center"/>
 
     <EditText
-        android:id="@+id/marca"
+        android:id="@+id/Marca"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -149,12 +151,13 @@
         android:gravity="center"/>
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/Area"
         android:layout_width="190dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp" />
+
     <TextView
         android:id="@+id/TVFecha"
         android:layout_width="200dp"
@@ -169,21 +172,17 @@
         android:gravity="center"/>
 
 
-    <EditText
-        android:id="@+id/fechadeasignacion"
-        android:layout_width="200dp"
+    <Button
+        android:id="@+id/btnSeleccionarFecha"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="100dp"
-        android:hint="Fecha de Asignación"
-        android:ems="10"
-        android:inputType="text"
-        android:drawableLeft="@drawable/baseline_event_24"
-        android:drawablePadding="5dp"/>
+        android:layout_gravity="center_horizontal"
+        android:text="Seleccionar Fecha"
+        android:layout_centerInParent="true"/>
+
 
     <Button
-        android:id="@+id/registrar"
+        android:id="@+id/btnRegistroEquipo"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginStart="130dp"
