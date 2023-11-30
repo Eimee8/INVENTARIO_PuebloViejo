@@ -1,8 +1,10 @@
 package com.example.inventario_puebloviejo.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import java.util.Date;
 
 import androidx.annotation.Nullable;
 
@@ -57,7 +59,7 @@ public class DataBase extends SQLiteOpenHelper {
                 "id_equipo INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "n_serie STRING NOT NULL," +
                 "tipo STRING NOT NULL," +
-                "estatus BOOLEAN NOT NULL," +
+                "estatus STRING NOT NULL," +
                 "marca STRING NOT NULL," +
                 "propietario STRING NOT NULL," +
                 "area STRING NOT NULL," +
@@ -73,5 +75,29 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EQUIPO);
 
         onCreate(db);
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        onUpgrade(db, oldVersion, newVersion);
+    }
+
+    public boolean insertEquipo(String n_serie, String tipo, String estatus,
+                                String marca, String propietario, String area, Date fecha_ini) {
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("n_serie", n_serie);
+        contentValues.put("tipo", tipo);
+        contentValues.put("estatus", estatus);
+        contentValues.put("marca", marca);
+        contentValues.put("propietario", propietario);
+        contentValues.put("area", area);
+        contentValues.put("fecha_ini", fecha_ini.getTime()); // Convertir Date a milisegundos
+
+        long result = sqLiteDatabase.insert(TABLE_EQUIPO, null, contentValues);
+
+        // Verificar si la inserción fue exitosa
+        return result != -1;
     }
 }

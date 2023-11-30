@@ -12,6 +12,26 @@
     <string name="menu_slideshow">Agenda</string>
     <string name="menu_perfil">Perfil</string>
 
+    <string-array name="opciones_tipo">
+        <item>Equipo Escritorio</item>
+        <item>Impresora</item>
+        <item>Moden</item>
+    </string-array>
+
+    <string-array name="opciones_estatus">
+        <item>Mantenimiento</item>
+        <item>Reparación</item>
+        <item>Sustitución</item>
+        <item>Activo</item>
+    </string-array>
+
+    <style name="SpinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+        <!-- Personaliza los atributos del estilo -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <!-- Otros atributos de estilo -->
+    </style>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -10,13 +10,13 @@ public class Date {
     private String telefono;
 
     private String nombre_area;
-    private Boolean estatus;
+    private String estatus;
     private String n_serie;
     private  String marca;
     private String propietario;
-    private String fecha_ini;
+    private Date fecha_ini;
 
-    private String fecha_llegada;
+    private Date fecha_llegada;
     private String descripcion;
     private String entrega;
 
@@ -96,10 +96,10 @@ public class Date {
         this.nombre_area = nombre_area;
     }
 
-    public Boolean getEstatus(){
+    public String getEstatus(){
         return estatus;
     }
-    public void setEstatus(Boolean estatus){
+    public void setEstatus(String estatus){
         this.estatus = estatus;
     }
 
@@ -118,25 +118,27 @@ public class Date {
         this.marca = marca;
     }
 
-    private String getPropietario(){
+    public String getPropietario() {
         return propietario;
     }
-    private void setPropietario(String propietario){
+
+    public void setPropietario(String propietario) {
         this.propietario = propietario;
     }
 
-    private String getFecha_ini(){
+    public Date getFecha_ini() {
         return fecha_ini;
     }
-    private void setFecha_ini(String fecha_ini){
+
+    public void setFecha_ini(Date fecha_ini) {
         this.fecha_ini = fecha_ini;
     }
 
-    private String getFecha_llegada(){
+    public Date getFecha_llegada() {
         return fecha_llegada;
     }
 
-    private void setFecha_llegada(String fecha_llegada){
+    public void setFecha_llegada(Date fecha_llegada) {
         this.fecha_llegada = fecha_llegada;
     }
 
@@ -168,5 +170,6 @@ public class Date {
     private void setArea(String area){
         this.area = area;
     }
+
 
 }
