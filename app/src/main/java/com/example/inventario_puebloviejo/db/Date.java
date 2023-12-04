@@ -14,7 +14,7 @@ public class Date {
     private String n_serie;
     private  String marca;
     private String propietario;
-    private Date fecha_ini;
+    private String fecha_ini;
 
     private Date fecha_llegada;
     private String descripcion;
@@ -126,11 +126,11 @@ public class Date {
         this.propietario = propietario;
     }
 
-    public Date getFecha_ini() {
+    public String getFecha_ini() {
         return fecha_ini;
     }
 
-    public void setFecha_ini(Date fecha_ini) {
+    public void setFecha_ini(String fecha_ini) {
         this.fecha_ini = fecha_ini;
     }
 

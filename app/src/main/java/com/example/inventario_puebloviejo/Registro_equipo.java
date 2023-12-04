@@ -33,7 +33,7 @@ public class Registro_equipo extends AppCompatActivity {
 
     DataBase db;
 
-    Button btnregistro;
+    Button btnregistro, fecha;
 
     EditText serie, marca, prop;
 
@@ -57,14 +57,17 @@ public class Registro_equipo extends AppCompatActivity {
         spinnerTipo.setAdapter(spinnerAdapter);
 
         spinnerEstatus = findViewById(R.id.Status);
-
         CharSequence[] opcionesEstatus = getResources().getTextArray(R.array.opciones_estatus);
-
         spinnerEstatusAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesEstatus);
-
         spinnerEstatusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinnerEstatus.setAdapter(spinnerEstatusAdapter);
+
+
+        Spinner spinnerArea = findViewById(R.id.Area);
+        CharSequence[] opcionesArea = getResources().getTextArray(R.array.opciones_area);
+        ArrayAdapter<CharSequence> spinnerAreaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesArea);
+        spinnerAreaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerArea.setAdapter(spinnerAreaAdapter);
 
         db = new DataBase(this);
 
@@ -82,12 +85,32 @@ public class Registro_equipo extends AppCompatActivity {
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String serie = binding.noserie.getContext().toString();
-                String tipo = binding.Tipo.getContext().toString();
-                String status = binding.Status.getContext().toString();
-                String marca = binding.Marca.getContext().toString();
-                String prop = binding.propietario.getContext().toString();
-                String area = binding.Area.getContext().toString();
+                String serie = binding.noserie.getText().toString();
+                String tipo = binding.Tipo.getSelectedItem().toString();
+                String status = binding.Status.getSelectedItem().toString();
+                String marca = binding.Marca.getText().toString();
+                String prop = binding.propietario.getText().toString();
+                String area = binding.Area.getSelectedItem().toString();
+                String formatofecha = "dd/MM/yyyy";
+                SimpleDateFormat sdf = new SimpleDateFormat(formatofecha, Locale.getDefault());
+                String fechaSeleccionada = sdf.format(calendar.getTime());
+
+                if (serie.isEmpty() || tipo.isEmpty() || status.isEmpty() || marca.isEmpty() || prop.isEmpty() || area.isEmpty()) {
+                    Toast.makeText(Registro_equipo.this, "Campos Vacíos", Toast.LENGTH_SHORT).show();
+                } else {
+                    boolean equipoExistente = db.equipoExistente(serie);
+                    if (equipoExistente) {
+                        Toast.makeText(Registro_equipo.this, "El equipo ya existe", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Corrección: Pasa la fecha formateada (fechaSeleccionada) en lugar del formato de fecha (formatofecha)
+                        boolean correcto = db.insertEquipo(serie, tipo, status, marca, prop, area, fechaSeleccionada);
+                        if (correcto) {
+                            Toast.makeText(Registro_equipo.this, "Se registró correctamente el equipo", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Registro_equipo.this, "Error al registrar el equipo", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
             }
         });
 
