@@ -2,6 +2,7 @@ package com.example.inventario_puebloviejo.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.Date;
@@ -10,7 +11,7 @@ import androidx.annotation.Nullable;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
 
     private static final String DATABASE_NOMBRE = "DataBasePV.db";
     private static final String TABLE_USUARIO = "Usuario";
@@ -23,47 +24,47 @@ public class DataBase extends SQLiteOpenHelper {
     public DataBase(Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
     }
-    public DataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-    }
+    //public DataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    //    super(context, name, factory, version);
+  //  }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_USUARIO + "("+
                 "id_usuario INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nombre STRING NOT NULL," +
-                "puesto STRING NOT NULL," +
-                "correo STRING NOT NULL," +
-                "password STRING NOT NULL," +
+                "nombre TEXT NOT NULL," +
+                "puesto TEXT NOT NULL," +
+                "correo TEXT NOT NULL," +
+                "password TEXT NOT NULL," +
                 "telefono INT NOT NULL)");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_DEPARTAMENTO + "("+
                 "id_area INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nombre_area STRING NOT NULL," +
+                "nombre_area TEXT NOT NULL," +
                 "estatus BOOLEAN NOT NULL," +
-                "n_serie STRING NOT NULL," +
-                "marca STRING NOT NULL," +
-                "propietario STRING NOT NULL," +
+                "n_serie TEXT NOT NULL," +
+                "marca TEXT NOT NULL," +
+                "propietario TEXT NOT NULL," +
                 "fecha_ini DATE NOT NULL)");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_MANTENIMIENTO + "("+
                 "id_mant INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "n_serie STRING NOT NULL," +
+                "n_serie TEXT NOT NULL," +
                 "fecha_llegada DATE NOT NULL," +
                 "estatus BOOLEAN NOT NULL," +
-                "descripcion STRING NOT NULL," +
+                "descripcion TEXT NOT NULL," +
                 "fecha_entrega DATE NOT NULL)");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_EQUIPO + "("+
                 "id_equipo INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "n_serie STRING NOT NULL," +
-                "tipo STRING NOT NULL," +
-                "estatus STRING NOT NULL," +
-                "marca STRING NOT NULL," +
-                "propietario STRING NOT NULL," +
-                "area STRING NOT NULL," +
-                "fecha_ini DATE NOT NULL)");
+                "n_serie TEXT NOT NULL," +
+                "tipo TEXT NOT NULL," +
+                "estatus TEXT NOT NULL," +
+                "marca TEXT NOT NULL," +
+                "propietario TEXT NOT NULL," +
+                "area TEXT NOT NULL," +
+                "fecha_ini TEXT NOT NULL)");
     }
 
     @Override
@@ -83,7 +84,7 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     public boolean insertEquipo(String n_serie, String tipo, String estatus,
-                                String marca, String propietario, String area, Date fecha_ini) {
+                                String marca, String propietario, String area, String fecha_ini) {
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -93,11 +94,24 @@ public class DataBase extends SQLiteOpenHelper {
         contentValues.put("marca", marca);
         contentValues.put("propietario", propietario);
         contentValues.put("area", area);
-        contentValues.put("fecha_ini", fecha_ini.getTime()); // Convertir Date a milisegundos
+        contentValues.put("fecha_ini", fecha_ini);
 
         long result = sqLiteDatabase.insert(TABLE_EQUIPO, null, contentValues);
 
-        // Verificar si la inserción fue exitosa
+        // Devuelve true si la inserción fue exitosa, false si hubo un error
         return result != -1;
     }
+
+    public boolean equipoExistente(String n_serie){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select * from Equipo Where n_serie=?", new String[]{n_serie.trim()                                                                                                                                                                                                                                                                                                                                                });
+
+        boolean existe = (cursor.getCount() > 0);
+
+        cursor.close();
+        database.close();
+
+        return existe;
+    }
+
 }

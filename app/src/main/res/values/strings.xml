@@ -25,6 +25,31 @@
         <item>Activo</item>
     </string-array>
 
+    <string-array name="opciones_area">
+        <item>Egresos</item>
+        <item>Ingresos</item>
+        <item>Tesoreria</item>
+        <item>Cajas</item>
+        <item>Catastro</item>
+        <item>Contraloria</item>
+        <item>Registro Civil</item>
+        <item>Secretarias</item>
+        <item>Regidores</item>
+        <item>Area De Tecnología</item>
+        <item>Obra Publica</item>
+        <item>Recursos Humanos</item>
+        <item>Religion</item>
+        <item>Instituto De La Mujer</item>
+        <item>Comandancia</item>
+        <item>Comercio</item>
+        <item>Alcoholes</item>
+        <item>Panteones</item>
+        <item>Transparencia</item>
+        <item>Desarrollo Social</item>
+        <item>Informatica</item>
+        <item>Trabajo Social</item>
+    </string-array>
+
     <style name="SpinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
         <!-- Personaliza los atributos del estilo -->
         <item name="android:textColor">@color/black</item>
