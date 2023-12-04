@@ -60,4 +60,8 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public void setToolbarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 }

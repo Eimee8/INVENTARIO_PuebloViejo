@@ -8,17 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.inventario_puebloviejo.MainActivity;
 import com.example.inventario_puebloviejo.R;
+import com.example.inventario_puebloviejo.databinding.FragmentPerfilBinding;
 
 
 public class Perfil extends Fragment {
 
 
+    private FragmentPerfilBinding binding;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil, container, false);
+
+        binding = FragmentPerfilBinding.inflate(inflater, container, false);
+        View root= binding.getRoot();
+
+        ((MainActivity) requireActivity()).setToolbarTitle("Perfil");
+
+        return root;
     }
 }
