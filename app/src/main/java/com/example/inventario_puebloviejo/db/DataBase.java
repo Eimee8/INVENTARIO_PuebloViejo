@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import java.util.Date;
+
+import java.util.ArrayList;
+
 
 import androidx.annotation.Nullable;
 
@@ -112,6 +114,60 @@ public class DataBase extends SQLiteOpenHelper {
         database.close();
 
         return existe;
+    }
+
+    public ArrayList<Date> mostrarEquipos() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ArrayList<Date> listEquipo = new ArrayList<>();
+        Cursor cursor = null;
+
+        try {
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_EQUIPO, null);
+
+            while (cursor.moveToNext()) {
+                Date date = new Date();
+                date.setEstatus(cursor.getString(3));
+                date.setMarca(cursor.getString(4));
+                date.setN_serie(cursor.getString(1));
+                date.setNombre_area(cursor.getString(6));
+                date.setFecha_ini(cursor.getString(7));
+                date.setPropietario(cursor.getString(5));
+
+                listEquipo.add(date);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return listEquipo;
+    }
+
+    public ArrayList<Date> mostrarArea() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%egresos%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
     }
 
 }
