@@ -146,7 +146,7 @@ public class DataBase extends SQLiteOpenHelper {
         return listEquipo;
     }
 
-    public ArrayList<Date> mostrarArea() {
+    public ArrayList<Date> mostrarEgresos() {
         ArrayList<Date> listdatos = new ArrayList<>();
         SQLiteDatabase date = this.getWritableDatabase();
 
@@ -170,4 +170,507 @@ public class DataBase extends SQLiteOpenHelper {
         return listdatos;
     }
 
+    public ArrayList<Date> mostrarIngresos() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%ingresos%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarTesoreria() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%tesoreria%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarCajas() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%cajas%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarCatastro() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%catastro%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarContraloria() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%contraloria%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarRegistroCivil() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%registro civil%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarSecretarias() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%secretarias%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarRegidores() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%regidores%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarAreaTecnologia() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%area de tecnologia%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarObraPublica() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%obra publica%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarRecursosHumanos() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%recursos humanos%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarReligion() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%religion%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarInstMujer() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%instituto de la mujer%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarComandancia() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%comandancia%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarComercio() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%comercio%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarAlcoholes() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%alcoholes%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarPanteones() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%panteones%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarTransparencia() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%transparencia%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarDrlloSocial() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%desarrollo social%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarInformatica() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%informatica%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
+
+    public ArrayList<Date> mostrarTrabajoSocial() {
+        ArrayList<Date> listdatos = new ArrayList<>();
+        SQLiteDatabase date = this.getWritableDatabase();
+
+        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%trabajo social%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listdatos.add(datos);
+            }
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
+            e.printStackTrace();
+        }
+
+        return listdatos;
+    }
 }
