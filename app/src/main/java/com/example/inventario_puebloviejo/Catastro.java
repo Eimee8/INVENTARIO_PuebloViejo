@@ -28,7 +28,7 @@ public class Catastro extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         date = new ArrayList<>();
-        date = db.mostrarCajas();
+        date = db.mostrarCatastro();
 
         AdapterEquipo adapter = new AdapterEquipo(date, this);
         recyclerView.setAdapter(adapter);

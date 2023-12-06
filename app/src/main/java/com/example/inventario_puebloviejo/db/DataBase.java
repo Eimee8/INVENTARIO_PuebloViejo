@@ -362,11 +362,11 @@ public class DataBase extends SQLiteOpenHelper {
         return listdatos;
     }
 
-    public ArrayList<Date> mostrarAreaTecnologia() {
+    public ArrayList<Date> mostrarTecnologia() {
         ArrayList<Date> listdatos = new ArrayList<>();
-        SQLiteDatabase date = this.getWritableDatabase();
+        SQLiteDatabase dato = this.getWritableDatabase();
 
-        try (Cursor cursor = date.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%area de tecnologia%"})) {
+        try (Cursor cursor = dato.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%area de tecnología%"})) {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
