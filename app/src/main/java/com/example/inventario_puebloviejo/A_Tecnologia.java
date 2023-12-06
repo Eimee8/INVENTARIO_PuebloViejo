@@ -29,6 +29,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -97,6 +98,11 @@ public class A_Tecnologia extends AppCompatActivity {
 
                 // Inicializar el documento iTextPdf
                 Document document = new Document(pdfDocument);
+
+                // Agregar el título centrado al documento
+                Paragraph title = new Paragraph("Reporte de Equipos");
+                title.setTextAlignment(TextAlignment.CENTER);
+                document.add(title);
 
                 // Obtener datos de la tabla y agregarlos al documento
                 for (Date equipo : date) {
