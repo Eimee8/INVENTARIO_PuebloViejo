@@ -28,7 +28,7 @@ public class A_Tecnologia extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         date = new ArrayList<>();
-        date = db.mostrarAreaTecnologia();
+        date = db.mostrarTecnologia();
 
         AdapterEquipo adapter = new AdapterEquipo(date, this);
         recyclerView.setAdapter(adapter);
