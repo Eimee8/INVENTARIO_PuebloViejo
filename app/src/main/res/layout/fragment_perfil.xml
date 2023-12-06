@@ -92,7 +92,7 @@
 
     </ImageView>
 
-    <EditText
+    <TextView
         android:id="@+id/NombreCompleto"
         android:layout_width="292dp"
         android:layout_height="50dp"
@@ -114,9 +114,9 @@
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="178dp">
 
-    </EditText>
+    </TextView>
 
-    <EditText
+    <TextView
         android:id="@+id/Puesto"
         android:layout_width="292dp"
         android:layout_height="50dp"
@@ -138,9 +138,9 @@
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="258dp">
 
-    </EditText>
+    </TextView>
 
-    <EditText
+    <TextView
         android:id="@+id/CorreoElectronico"
         android:layout_width="292dp"
         android:layout_height="50dp"
@@ -162,9 +162,9 @@
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="341dp">
 
-    </EditText>
+    </TextView>
 
-    <EditText
+    <TextView
         android:id="@+id/NumeroCelular"
         android:layout_width="292dp"
         android:layout_height="50dp"
@@ -187,7 +187,7 @@
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="422dp">
 
-    </EditText>
+    </TextView>
 
     <Button
         android:id="@+id/Modificar"
