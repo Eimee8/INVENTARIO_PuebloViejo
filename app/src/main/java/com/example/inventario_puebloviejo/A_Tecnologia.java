@@ -58,7 +58,7 @@ public class A_Tecnologia extends AppCompatActivity {
         AdapterEquipo adapter = new AdapterEquipo(date, this);
         recyclerView.setAdapter(adapter);
 
-        Button generarPDFbtn = findViewById(R.id.btnPDF);
+        Button generarPDFbtn = findViewById(R.id.btnPDFTecnologia);
 
         generarPDFbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,7 @@ public class A_Tecnologia extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/pdf");
-        intent.putExtra(Intent.EXTRA_TITLE, "equipos.pdf");
+        intent.putExtra(Intent.EXTRA_TITLE, "Equipos Tecnologia.pdf");
 
         startActivityForResult(intent, REQUEST_CODE_CREATE_PDF);
     }
