@@ -8,13 +8,22 @@
     android:layout_height="match_parent"
     tools:context=".Egresos">
 
+    <EditText
+        android:id="@+id/Busqueda"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Buscar"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/VistaEgresos"

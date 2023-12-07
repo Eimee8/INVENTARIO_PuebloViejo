@@ -3,11 +3,14 @@ package com.example.inventario_puebloviejo.ui.gallery;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,14 +41,20 @@ public class GalleryFragment extends Fragment {
 
     private static final int REQUEST_CODE_CREATE_PDF = 123;
 
+    EditText busqueda;
     Button registro, button;
     private FragmentGalleryBinding binding;
 
     DataBase db;
-    //ArrayList date;
 
     private ArrayList<Date> date;
     RecyclerView recyclerView;
+
+    AdapterEquipo adapterEquipo;
+
+    private boolean filtroPorNombre = true;
+    private boolean filtroPorTipo = false;
+    private boolean filtroPorArea = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,10 +73,31 @@ public class GalleryFragment extends Fragment {
         recyclerView = root.findViewById(R.id.vEquipo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        AdapterEquipo adapterEquipo = new AdapterEquipo(db.mostrarEquipos(),getContext());
+        adapterEquipo = new AdapterEquipo(db.mostrarEquipos(),getContext());
         recyclerView.setAdapter(adapterEquipo);
 
+        busqueda = root.findViewById(R.id.Busqueda);
+
         registro = (Button) root.findViewById(R.id.btnRegistro);
+
+        busqueda.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String filtroBusqueda = s.toString();
+                filtrarEquipos(filtroBusqueda);
+            }
+
+        });
 
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +117,23 @@ public class GalleryFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void filtrarEquipos(String filtro) {
+        ArrayList<Date> resultados;
+
+        // Verificar qué filtro está activo y realizar la búsqueda correspondiente
+        if (filtroPorNombre) {
+            resultados = db.mostrarEquiposPorNombre(filtro);
+        } else if (filtroPorTipo) {
+            resultados = db.mostrarEquiposPorTipo(filtro);
+        } else if (filtroPorArea) {
+            resultados = db.mostrarEquiposPorArea(filtro);
+        } else {
+            // Si no hay filtro específico, mostrar todos los equipos
+            resultados = db.mostrarEquipos();
+        }
+        adapterEquipo.actualizarDatos(resultados);
     }
 
     private void generarPDF() {
@@ -143,4 +190,6 @@ public class GalleryFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+
 }

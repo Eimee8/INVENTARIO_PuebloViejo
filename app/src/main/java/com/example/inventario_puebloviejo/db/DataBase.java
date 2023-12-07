@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     private static final String DATABASE_NOMBRE = "DataBasePV.db";
     private static final String TABLE_USUARIO = "Usuario";
@@ -100,7 +100,6 @@ public class DataBase extends SQLiteOpenHelper {
 
         long result = sqLiteDatabase.insert(TABLE_EQUIPO, null, contentValues);
 
-        // Devuelve true si la inserción fue exitosa, false si hubo un error
         return result != -1;
     }
 
@@ -155,6 +154,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -164,7 +164,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -179,6 +178,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -188,7 +188,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -203,6 +202,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -212,7 +212,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -227,6 +226,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -236,7 +236,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -251,6 +250,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -260,7 +260,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -275,6 +274,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -284,7 +284,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -299,6 +298,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -308,7 +308,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -323,6 +322,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -332,7 +332,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -347,6 +346,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -356,7 +356,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -371,6 +370,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -380,7 +380,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -395,6 +394,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -404,7 +404,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -419,6 +418,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -428,7 +428,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -443,6 +442,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -452,7 +452,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -467,6 +466,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -476,7 +476,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -491,6 +490,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -500,7 +500,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -515,6 +514,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -524,7 +524,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -539,6 +538,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -548,7 +548,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -563,6 +562,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -572,7 +572,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -587,6 +586,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -596,7 +596,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -611,6 +610,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -620,7 +620,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -635,6 +634,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -644,7 +644,6 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
@@ -659,6 +658,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
                 datos.setMarca(cursor.getString(4));
                 datos.setN_serie(cursor.getString(1));
                 datos.setNombre_area(cursor.getString(6));
@@ -668,10 +668,88 @@ public class DataBase extends SQLiteOpenHelper {
                 listdatos.add(datos);
             }
         } catch (Exception e) {
-            // Manejar cualquier excepción que pueda ocurrir al trabajar con la base de datos
             e.printStackTrace();
         }
 
         return listdatos;
+    }
+
+    public ArrayList<Date> mostrarEquiposPorNombre(String propietario) {
+        ArrayList<Date> listDatos = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE propietario LIKE ?", new String[]{"%" + propietario + "%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listDatos.add(datos);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listDatos;
+    }
+
+    public ArrayList<Date> mostrarEquiposPorTipo(String tipo) {
+        ArrayList<Date> listDatos = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+
+        try {
+            cursor = db.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE tipo LIKE ?", new String[]{"%" + tipo + "%"});
+
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listDatos.add(datos);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return listDatos;
+    }
+
+    public ArrayList<Date> mostrarEquiposPorArea(String area) {
+        ArrayList<Date> listDatos = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%" + area + "%"})) {
+            while (cursor != null && cursor.moveToNext()) {
+                Date datos = new Date();
+                datos.setEstatus(cursor.getString(3));
+                datos.setTipo(cursor.getString(2));
+                datos.setMarca(cursor.getString(4));
+                datos.setN_serie(cursor.getString(1));
+                datos.setNombre_area(cursor.getString(6));
+                datos.setFecha_ini(cursor.getString(7));
+                datos.setPropietario(cursor.getString(5));
+
+                listDatos.add(datos);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listDatos;
     }
 }

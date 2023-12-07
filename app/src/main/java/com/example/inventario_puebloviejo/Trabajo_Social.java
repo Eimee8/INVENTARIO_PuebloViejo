@@ -105,7 +105,6 @@ public class Trabajo_Social extends AppCompatActivity {
                     document.add(new Paragraph("Propietario: " + equipo.getPropietario()));
                     document.add(new Paragraph("----------------------------------------"));
                 }
-
                 document.close();
                 outputStream.close();
             }

@@ -10,8 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.inventario_puebloviejo.databinding.ActivityRegistroEquipoBinding;
 import com.example.inventario_puebloviejo.db.AdapterEquipo;
@@ -34,6 +40,14 @@ public class Egresos extends AppCompatActivity {
     private ArrayList <Date> date;
     RecyclerView recyclerView;
 
+    EditText busqueda;
+
+    AdapterEquipo adapter;
+
+    private boolean filtroPorNombre = true;
+    private boolean filtroPorTipo = false;
+    private boolean filtroPorArea = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +60,33 @@ public class Egresos extends AppCompatActivity {
         date = new ArrayList<>();
         date = db.mostrarEgresos();
 
-        AdapterEquipo adapter = new AdapterEquipo(date, this);
+        adapter = new AdapterEquipo(date, this);
         recyclerView.setAdapter(adapter);
 
+        busqueda = findViewById(R.id.Busqueda);
+
         Button generarPDFbtn = findViewById(R.id.btnPDFArea);
+
+        busqueda.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String filtroBusqueda = s.toString();
+                filtrarEquipos(filtroBusqueda);
+            }
+
+        });
+
+
 
         generarPDFbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +94,26 @@ public class Egresos extends AppCompatActivity {
                 generarPDF();
             }
         });
+
     }
+
+    private void filtrarEquipos(String filtro) {
+        ArrayList<Date> resultados;
+
+        // Verificar qué filtro está activo y realizar la búsqueda correspondiente
+        if (filtroPorNombre) {
+            resultados = db.mostrarEquiposPorNombre(filtro);
+        } else if (filtroPorTipo) {
+            resultados = db.mostrarEquiposPorTipo(filtro);
+        } else {
+            // Si no hay filtro específico, mostrar todos los equipos
+            resultados = db.mostrarEgresos();
+        }
+        adapter.actualizarDatos(resultados);
+    }
+
+
+
     private void generarPDF() {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -114,4 +170,6 @@ public class Egresos extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 }

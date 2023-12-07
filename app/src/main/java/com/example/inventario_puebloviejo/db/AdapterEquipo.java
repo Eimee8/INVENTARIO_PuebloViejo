@@ -61,6 +61,12 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
         return lista.size();
     }
 
+    public void actualizarDatos(ArrayList<Date> nuevosDatos) {
+        this.lista.clear(); // Limpiar la lista existente
+        this.lista.addAll(nuevosDatos); // Agregar los nuevos datos
+        notifyDataSetChanged(); // Notificar al adaptador que los datos han cambiado
+    }
+
     public static class ViewHolder  extends RecyclerView.ViewHolder{
         private TextView status, tipo, marca, serie, nomarea, fecha, propietario;
 

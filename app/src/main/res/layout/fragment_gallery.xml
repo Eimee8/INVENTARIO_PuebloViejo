@@ -5,15 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <EditText
+        android:id="@+id/Busqueda"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Buscar"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="680dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vEquipo"
