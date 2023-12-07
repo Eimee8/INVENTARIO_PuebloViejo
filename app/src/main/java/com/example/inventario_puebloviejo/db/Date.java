@@ -16,7 +16,7 @@ public class Date {
     private String propietario;
     private String fecha_ini;
 
-    private Date fecha_llegada;
+    private String fecha_llegada;
     private String descripcion;
     private String entrega;
 
@@ -134,11 +134,11 @@ public class Date {
         this.fecha_ini = fecha_ini;
     }
 
-    public Date getFecha_llegada() {
+    public String getFecha_llegada() {
         return fecha_llegada;
     }
 
-    public void setFecha_llegada(Date fecha_llegada) {
+    public void setFecha_llegada(String fecha_llegada) {
         this.fecha_llegada = fecha_llegada;
     }
 

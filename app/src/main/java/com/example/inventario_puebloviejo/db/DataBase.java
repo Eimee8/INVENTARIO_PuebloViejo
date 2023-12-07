@@ -44,19 +44,19 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_DEPARTAMENTO + "("+
                 "id_area INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre_area TEXT NOT NULL," +
-                "estatus BOOLEAN NOT NULL," +
+                "estatus TEXT NOT NULL," +
                 "n_serie TEXT NOT NULL," +
                 "marca TEXT NOT NULL," +
                 "propietario TEXT NOT NULL," +
-                "fecha_ini DATE NOT NULL)");
+                "fecha_ini TEXT NOT NULL)");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_MANTENIMIENTO + "("+
                 "id_mant INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "n_serie TEXT NOT NULL," +
                 "fecha_llegada DATE NOT NULL," +
-                "estatus BOOLEAN NOT NULL," +
+                "estatus TEXT NOT NULL," +
                 "descripcion TEXT NOT NULL," +
-                "fecha_entrega DATE NOT NULL)");
+                "fecha_entrega TEXT NOT NULL)");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_EQUIPO + "("+
                 "id_equipo INTEGER PRIMARY KEY AUTOINCREMENT, " +
