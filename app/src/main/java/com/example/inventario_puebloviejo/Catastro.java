@@ -52,7 +52,7 @@ public class Catastro extends AppCompatActivity {
         generarPDFbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                generarPDF();
             }
         });
     }
