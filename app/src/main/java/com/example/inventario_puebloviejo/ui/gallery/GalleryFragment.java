@@ -38,8 +38,6 @@ public class GalleryFragment extends Fragment {
 
     private static final int REQUEST_CODE_CREATE_PDF = 123;
 
-
-
     Button registro, button;
     private FragmentGalleryBinding binding;
 
@@ -129,6 +127,7 @@ public class GalleryFragment extends Fragment {
                 // Obtener datos de la tabla y agregarlos al documento
                 for (Date equipo : date) {
                     document.add(new Paragraph("Estatus: " + equipo.getEstatus()));
+                    document.add(new Paragraph("Tipo: " + equipo.getTipo()));
                     document.add(new Paragraph("Marca: " + equipo.getMarca()));
                     document.add(new Paragraph("Número de Serie: " + equipo.getN_serie()));
                     document.add(new Paragraph("Nombre de Área: " + equipo.getNombre_area()));

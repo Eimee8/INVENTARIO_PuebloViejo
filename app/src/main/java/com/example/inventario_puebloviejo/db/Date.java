@@ -157,10 +157,11 @@ public class Date {
         this.entrega = entrega;
     }
 
-    public String getTipo(){
+    public String getTipo() {
         return tipo;
     }
-    private void setTipo(String tipo){
+
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

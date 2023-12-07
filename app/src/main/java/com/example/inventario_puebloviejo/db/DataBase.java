@@ -127,6 +127,7 @@ public class DataBase extends SQLiteOpenHelper {
             while (cursor.moveToNext()) {
                 Date date = new Date();
                 date.setEstatus(cursor.getString(3));
+                date.setTipo(cursor.getString(2));
                 date.setMarca(cursor.getString(4));
                 date.setN_serie(cursor.getString(1));
                 date.setNombre_area(cursor.getString(6));

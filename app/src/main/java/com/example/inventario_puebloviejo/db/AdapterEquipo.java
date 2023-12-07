@@ -40,8 +40,9 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
 
         //Relacion de las columnas de las tablas con el AdapterP
-       // holder.id.setText(String.valueOf(lista.get(position).getId()));
+
         holder.status.setText(lista.get(position).getEstatus());
+        holder.tipo.setText(lista.get(position).getTipo());
         holder.marca.setText(lista.get(position).getMarca());
         holder.serie.setText(lista.get(position).getN_serie());
         holder.nomarea.setText(lista.get(position).getNombre_area());
@@ -61,8 +62,8 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
     }
 
     public static class ViewHolder  extends RecyclerView.ViewHolder{
-        private TextView status, marca, serie, nomarea, fecha, propietario;
-       // private ImageView btnVista, btncompra;
+        private TextView status, tipo, marca, serie, nomarea, fecha, propietario;
+
 
         public ViewHolder(@NonNull View View) {
             super(View);
@@ -70,14 +71,13 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
             //Relacion de las columnas con los componentes de la vista
             //id = View.findViewById(R.id.idproducto);
             status = View.findViewById(R.id.status_equipo);
+            tipo = View.findViewById(R.id.TipoEquipo);
             marca = View.findViewById(R.id.marcaEquipo);
             serie = View.findViewById(R.id.numSerie);
             nomarea = View.findViewById(R.id.nomArea);
             fecha = View.findViewById(R.id.Fecha);
             propietario = View.findViewById(R.id.propietarioEquipo);
-            //imagen = View.findViewById(R.id.product_image);
-           // btnVista = View.findViewById(R.id.btnvistaProducto);
-           // btncompra = View.findViewById(R.id.btnCarrro);
+
 
 
         }
