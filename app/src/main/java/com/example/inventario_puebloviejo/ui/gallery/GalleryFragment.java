@@ -52,9 +52,8 @@ public class GalleryFragment extends Fragment {
 
     AdapterEquipo adapterEquipo;
 
-    private boolean filtroPorNombre = true;
-    private boolean filtroPorTipo = false;
-    private boolean filtroPorArea = false;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,10 +63,10 @@ public class GalleryFragment extends Fragment {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
         db = new DataBase(this.getContext());
 
         date = new ArrayList();
+
         date = db.mostrarEquipos();
 
         recyclerView = root.findViewById(R.id.vEquipo);
@@ -94,7 +93,7 @@ public class GalleryFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 String filtroBusqueda = s.toString();
-                filtrarEquipos(filtroBusqueda);
+                filtrarEquiposPorNombre(filtroBusqueda);
             }
 
         });
@@ -119,22 +118,12 @@ public class GalleryFragment extends Fragment {
         return root;
     }
 
-    private void filtrarEquipos(String filtro) {
-        ArrayList<Date> resultados;
-
-        // Verificar qué filtro está activo y realizar la búsqueda correspondiente
-        if (filtroPorNombre) {
-            resultados = db.mostrarEquiposPorNombre(filtro);
-        } else if (filtroPorTipo) {
-            resultados = db.mostrarEquiposPorTipo(filtro);
-        } else if (filtroPorArea) {
-            resultados = db.mostrarEquiposPorArea(filtro);
-        } else {
-            // Si no hay filtro específico, mostrar todos los equipos
-            resultados = db.mostrarEquipos();
-        }
+    private void filtrarEquiposPorNombre(String filtro) {
+        ArrayList<Date> resultados = db.mostrarEquiposPorNombre(filtro);
         adapterEquipo.actualizarDatos(resultados);
     }
+
+
 
     private void generarPDF() {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
@@ -145,7 +134,6 @@ public class GalleryFragment extends Fragment {
         startActivityForResult(intent, REQUEST_CODE_CREATE_PDF);
     }
 
-    // Agrega este método para manejar onActivityResult en la Actividad que aloja
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_CODE_CREATE_PDF && resultCode == AppCompatActivity.RESULT_OK) {
             if (data != null && data.getData() != null) {
@@ -159,19 +147,16 @@ public class GalleryFragment extends Fragment {
         try {
             OutputStream outputStream = requireContext().getContentResolver().openOutputStream(uri);
             if (outputStream != null) {
-                // Configurar el escritor PDF
+
                 PdfWriter pdfWriter = new PdfWriter(outputStream);
                 PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 
-                // Inicializar el documento iTextPdf
                 Document document = new Document(pdfDocument);
 
-                // Agregar el título centrado al documento
                 Paragraph title = new Paragraph("Reporte de Equipos");
                 title.setTextAlignment(TextAlignment.CENTER);
                 document.add(title);
 
-                // Obtener datos de la tabla y agregarlos al documento
                 for (Date equipo : date) {
                     document.add(new Paragraph("Estatus: " + equipo.getEstatus()));
                     document.add(new Paragraph("Tipo: " + equipo.getTipo()));

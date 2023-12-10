@@ -71,8 +71,6 @@ public class Registro_equipo extends AppCompatActivity {
 
         db = new DataBase(this);
 
-
-
         serie = findViewById(R.id.noserie);
         tipo =  findViewById(R.id.Tipo);
         status =  findViewById(R.id.Status);

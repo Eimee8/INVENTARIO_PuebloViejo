@@ -59,7 +59,7 @@
           android:textStyle="bold" />
 
       <Spinner
-          android:id="@+id/spinner5"
+          android:id="@+id/TipoAgenda"
           android:layout_width="187dp"
           android:layout_height="30dp"
           android:layout_below="@+id/tipo"
@@ -71,7 +71,7 @@
           android:id="@+id/estatus"
           android:layout_width="187dp"
           android:layout_height="30dp"
-          android:layout_below="@+id/spinner5"
+          android:layout_below="@+id/TipoAgenda"
           android:layout_marginStart="16dp"
           android:layout_marginTop="20dp"
           android:background="@color/vino"
@@ -82,7 +82,7 @@
           android:textStyle="bold" />
 
       <Spinner
-          android:id="@+id/spinner4"
+          android:id="@+id/EstatusAgenda"
           android:layout_width="187dp"
           android:layout_height="30dp"
           android:layout_below="@+id/estatus"
@@ -107,7 +107,7 @@
           android:gravity="center"/>
 
       <EditText
-          android:id="@+id/descripcion"
+          android:id="@+id/descripcionAgenda"
           android:layout_width="178dp"
           android:layout_height="350dp"
           android:layout_below="@+id/ingresardescripcion"
@@ -132,7 +132,7 @@
           android:id="@+id/fchllegada"
           android:layout_width="187dp"
           android:layout_height="40dp"
-          android:layout_below="@+id/spinner4"
+          android:layout_below="@+id/EstatusAgenda"
           android:layout_alignParentStart="true"
           android:layout_marginStart="16dp"
           android:layout_marginTop="140dp"
@@ -148,7 +148,7 @@
           android:id="@+id/fchentrega"
           android:layout_width="187dp"
           android:layout_height="40dp"
-          android:layout_below="@+id/descripcion"
+          android:layout_below="@+id/descripcionAgenda"
           android:layout_alignParentStart="true"
           android:layout_alignParentEnd="true"
           android:layout_marginStart="210dp"

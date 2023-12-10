@@ -67,7 +67,7 @@ public class Egresos extends AppCompatActivity {
 
         Button generarPDFbtn = findViewById(R.id.btnPDFArea);
 
-        busqueda.addTextChangedListener(new TextWatcher() {
+       /* busqueda.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -81,10 +81,11 @@ public class Egresos extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String filtroBusqueda = s.toString();
-                filtrarEquipos(filtroBusqueda);
+                filtrarEquiposPorNombre(filtroBusqueda);
             }
 
-        });
+
+        });*/
 
 
 
@@ -97,20 +98,10 @@ public class Egresos extends AppCompatActivity {
 
     }
 
-    private void filtrarEquipos(String filtro) {
-        ArrayList<Date> resultados;
-
-        // Verificar qué filtro está activo y realizar la búsqueda correspondiente
-        if (filtroPorNombre) {
-            resultados = db.mostrarEquiposPorNombre(filtro);
-        } else if (filtroPorTipo) {
-            resultados = db.mostrarEquiposPorTipo(filtro);
-        } else {
-            // Si no hay filtro específico, mostrar todos los equipos
-            resultados = db.mostrarEgresos();
-        }
+    /*private void filtrarEquiposPorNombre(String filtro) {
+        ArrayList<Date> resultados = db.mostrarEquiposPorNombre(filtro);
         adapter.actualizarDatos(resultados);
-    }
+    }*/
 
 
 

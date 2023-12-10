@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import androidx.annotation.Nullable;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 9;
 
     private static final String DATABASE_NOMBRE = "DataBasePV.db";
     private static final String TABLE_USUARIO = "Usuario";
@@ -53,9 +54,10 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_MANTENIMIENTO + "("+
                 "id_mant INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "n_serie TEXT NOT NULL," +
-                "fecha_llegada DATE NOT NULL," +
+                "tipo TEXT NOT NULL," +
                 "estatus TEXT NOT NULL," +
                 "descripcion TEXT NOT NULL," +
+                "fecha_llegada TEXT NOT NULL," +
                 "fecha_entrega TEXT NOT NULL)");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_EQUIPO + "("+
@@ -103,7 +105,40 @@ public class DataBase extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    public boolean insertEquipoAgenda(String n_serie, String tipo, String estatus,
+                                      String descripcion, String fecha_llegada, String fecha_entrega) {
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("n_serie", n_serie);
+        contentValues.put("tipo", tipo);
+        contentValues.put("estatus", estatus);
+        contentValues.put("descripcion", descripcion);
+        contentValues.put("fecha_llegada", fecha_llegada);
+        contentValues.put("fecha_ini", fecha_entrega);
+
+        long result = sqLiteDatabase.insert(TABLE_MANTENIMIENTO, null, contentValues);
+
+        if (result == -1) {
+            Log.e("Database", "Error al insertar equipo en la base de datos");
+        }
+
+        return result != -1;
+    }
+
     public boolean equipoExistente(String n_serie){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select * from Equipo Where n_serie=?", new String[]{n_serie.trim()                                                                                                                                                                                                                                                                                                                                                });
+
+        boolean existe = (cursor.getCount() > 0);
+
+        cursor.close();
+        database.close();
+
+        return existe;
+    }
+
+    public boolean equipoAreaExistente(String n_serie){
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery("Select * from Equipo Where n_serie=?", new String[]{n_serie.trim()                                                                                                                                                                                                                                                                                                                                                });
 
@@ -707,16 +742,16 @@ public class DataBase extends SQLiteOpenHelper {
             cursor = db.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE tipo LIKE ?", new String[]{"%" + tipo + "%"});
 
             while (cursor != null && cursor.moveToNext()) {
-                Date datos = new Date();
-                datos.setEstatus(cursor.getString(3));
-                datos.setTipo(cursor.getString(2));
-                datos.setMarca(cursor.getString(4));
-                datos.setN_serie(cursor.getString(1));
-                datos.setNombre_area(cursor.getString(6));
-                datos.setFecha_ini(cursor.getString(7));
-                datos.setPropietario(cursor.getString(5));
+                Date dato = new Date();
+                dato.setEstatus(cursor.getString(3));
+                dato.setTipo(cursor.getString(2));
+                dato.setMarca(cursor.getString(4));
+                dato.setN_serie(cursor.getString(1));
+                dato.setNombre_area(cursor.getString(6));
+                dato.setFecha_ini(cursor.getString(7));
+                dato.setPropietario(cursor.getString(5));
 
-                listDatos.add(datos);
+                listDatos.add(dato);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -729,11 +764,11 @@ public class DataBase extends SQLiteOpenHelper {
         return listDatos;
     }
 
-    public ArrayList<Date> mostrarEquiposPorArea(String area) {
+    public ArrayList<Date> mostrarEquiposPorTipoArea(String area) {
         ArrayList<Date> listDatos = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
 
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area LIKE ?", new String[]{"%" + area + "%"})) {
+        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area = ?", new String[]{"%" + area + "%"})) {
             while (cursor != null && cursor.moveToNext()) {
                 Date datos = new Date();
                 datos.setEstatus(cursor.getString(3));
