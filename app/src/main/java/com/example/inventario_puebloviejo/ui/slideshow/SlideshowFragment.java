@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -40,14 +41,17 @@ import java.util.Locale;
 
 public class SlideshowFragment extends Fragment {
 
+    Spinner spinnerTipo;
+    Spinner spinnerEstatus;
+
     EditText serie, descripcion;
     Spinner tipo, status;
     Button btnGuardar, pdf, btnllegada, btnentrega;
 
     DataBase db;
-
+    ArrayAdapter<CharSequence> spinnerAdapter;
+    ArrayAdapter<CharSequence> spinnerEstatusAdapter;
     private ArrayList<Date> date;
-
     private Calendar calendarLlegada;
     private Calendar calendarEntrega;
 
@@ -62,6 +66,18 @@ public class SlideshowFragment extends Fragment {
         View root = binding.getRoot();
 
         db = new DataBase(this.getContext());
+
+        spinnerTipo = root.findViewById(R.id.TipoAgenda);
+        CharSequence[] opciones = getResources().getTextArray(R.array.opciones_tipoAgenda);
+        spinnerAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, opciones);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerTipo.setAdapter(spinnerAdapter);
+
+        spinnerEstatus = root.findViewById(R.id.EstatusAgenda);
+        CharSequence[] opcionesEstatus = getResources().getTextArray(R.array.opciones_estatusAgenda);
+        spinnerEstatusAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, opcionesEstatus);
+        spinnerEstatusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerEstatus.setAdapter(spinnerEstatusAdapter);
 
         serie = root.findViewById(R.id.ingresarid);
         descripcion = root.findViewById(R.id.descripcionAgenda);
@@ -98,8 +114,8 @@ public class SlideshowFragment extends Fragment {
             public void onClick(View v) {
                 String serie = binding.ingresarid.getText().toString();
                 String descripcion = binding.descripcionAgenda.getText().toString();
-                String tipo = binding.tipo.getText().toString();
-                String status = binding.estatus.getText().toString();
+                String tipo = spinnerTipo.getSelectedItem().toString();
+                String status = spinnerEstatus.getSelectedItem().toString();
                 String formatoFecha = "dd/MM/yyyy";
                 SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha, Locale.getDefault());
                 String fecha_llegada = sdf.format(calendarLlegada.getTime());
@@ -212,7 +228,7 @@ public class SlideshowFragment extends Fragment {
         // Crear un intent para la actividad que se abrirá al hacer clic en la notificación
         Intent intent = new Intent(requireContext(), SlideshowFragment.class);
         int requestCode = 1;  // Cambia esto a un valor único para cada notificación
-        PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
 
         // Configurar el builder de la notificación
         NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "canal_id")

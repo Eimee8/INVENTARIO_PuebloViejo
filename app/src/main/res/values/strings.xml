@@ -18,11 +18,20 @@
         <item>Modem</item>
     </string-array>
 
+    <string-array name="opciones_tipoAgenda">
+        <item>Equipo Escritorio</item>
+        <item>Impresora</item>
+        <item>Modem</item>
+    </string-array>
+
     <string-array name="opciones_estatus">
-        <item>Mantenimiento</item>
-        <item>Reparación</item>
         <item>Sustitución</item>
         <item>Activo</item>
+    </string-array>
+
+    <string-array name="opciones_estatusAgenda">
+        <item>Mantenimiento</item>
+        <item>Reparación</item>
     </string-array>
 
     <string-array name="opciones_area">

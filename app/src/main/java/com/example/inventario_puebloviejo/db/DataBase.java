@@ -115,7 +115,7 @@ public class DataBase extends SQLiteOpenHelper {
         contentValues.put("estatus", estatus);
         contentValues.put("descripcion", descripcion);
         contentValues.put("fecha_llegada", fecha_llegada);
-        contentValues.put("fecha_ini", fecha_entrega);
+        contentValues.put("fecha_entrega", fecha_entrega);
 
         long result = sqLiteDatabase.insert(TABLE_MANTENIMIENTO, null, contentValues);
 
