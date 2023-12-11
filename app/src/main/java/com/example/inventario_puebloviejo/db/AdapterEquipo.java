@@ -30,16 +30,12 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        //Visualizacion de los datos con la vista
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.equipo,parent,false);
         return new ViewHolder(view);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
-
-        //Relacion de las columnas de las tablas con el AdapterP
 
         holder.status.setText(lista.get(position).getEstatus());
         holder.tipo.setText(lista.get(position).getTipo());

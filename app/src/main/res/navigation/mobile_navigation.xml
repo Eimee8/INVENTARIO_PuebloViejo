@@ -32,5 +32,10 @@
         android:name="com.example.inventario_puebloviejo.MainActivity"
         android:label="app_bar_main"
         tools:layout="@layout/app_bar_main" />
+    <fragment
+        android:id="@+id/pendientes"
+        android:name="com.example.inventario_puebloviejo.ui.Pendientes"
+        android:label="fragment_pendientes"
+        tools:layout="@layout/fragment_pendientes" />
 
 </navigation>

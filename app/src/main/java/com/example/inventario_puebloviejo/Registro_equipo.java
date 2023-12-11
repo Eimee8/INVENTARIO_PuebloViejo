@@ -2,7 +2,7 @@ package com.example.inventario_puebloviejo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Date;
+
 
 import com.example.inventario_puebloviejo.databinding.ActivityRegistroEquipoBinding;
 import com.example.inventario_puebloviejo.db.DataBase;
@@ -33,7 +33,7 @@ public class Registro_equipo extends AppCompatActivity {
 
     DataBase db;
 
-    Button btnregistro, fecha;
+    Button btnregistro;
 
     EditText serie, marca, prop;
 
@@ -49,11 +49,8 @@ public class Registro_equipo extends AppCompatActivity {
 
         spinnerTipo = findViewById(R.id.Tipo);
         CharSequence[] opciones = getResources().getTextArray(R.array.opciones_tipo);
-        // Crea el ArrayAdapter utilizando el array de recursos
         spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
-        // Especifica el diseño que se utilizará cuando aparezca la lista de opciones
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Asigna el ArrayAdapter al Spinner
         spinnerTipo.setAdapter(spinnerAdapter);
 
         spinnerEstatus = findViewById(R.id.Status);

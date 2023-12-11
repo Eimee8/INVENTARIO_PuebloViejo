@@ -8,13 +8,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 import androidx.annotation.Nullable;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     private static final String DATABASE_NOMBRE = "DataBasePV.db";
     private static final String TABLE_USUARIO = "Usuario";
@@ -27,9 +29,6 @@ public class DataBase extends SQLiteOpenHelper {
     public DataBase(Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
     }
-    //public DataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-    //    super(context, name, factory, version);
-  //  }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -40,7 +39,9 @@ public class DataBase extends SQLiteOpenHelper {
                 "puesto TEXT NOT NULL," +
                 "correo TEXT NOT NULL," +
                 "password TEXT NOT NULL," +
-                "telefono INT NOT NULL)");
+                "telefono TEXT NOT NULL)");
+
+        //insertarUsuario(db,"123", "Ingeniero", "correo@ejemplo.com", "123", "8331235649");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_DEPARTAMENTO + "("+
                 "id_area INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -78,13 +79,75 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DEPARTAMENTO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MANTENIMIENTO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EQUIPO);
-
         onCreate(db);
+
+        /*insertarUsuario(db, "123", "Ingeniero", "correo@ejemplo.com", "123", "8331235649");
+        long idUsuarioPrueba = insertarUsuario(db, "UsuarioPrueba", "Ingeniero", "correo_prueba@ejemplo.com", "contraseña123", "123456789");
+
+        if (idUsuarioPrueba != -1) {
+            Log.d("DatabaseHelper", "Usuario de prueba insertado correctamente con ID: " + idUsuarioPrueba);
+        } else {
+            Log.e("DatabaseHelper", "Error al insertar usuario de prueba");
+        }*/
     }
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
+    }
+
+    public long insertarUsuario(SQLiteDatabase db, String nombre, String puesto, String correo, String password, String telefono) {
+        ContentValues values = new ContentValues();
+
+        values.put("nombre", nombre);
+        values.put("Ingeniero", puesto);
+        values.put("correo", correo);
+        values.put("password", password);
+        values.put("telefono", telefono);
+
+        long resultado = db.insert(TABLE_USUARIO, null, values);
+
+        db.close();
+
+        return resultado;
+    }
+
+    public boolean usuarioError(String nombre) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM Usuario WHERE nombre=?", new String[]{nombre});
+
+        boolean usuarioError = (cursor.getCount() == 0);
+
+        cursor.close();
+        database.close();
+
+        return usuarioError;
+
+    }
+
+    public boolean contraseñaError(String password){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select * from Usuario Where password=?", new String[]{password});
+
+        boolean contraseñaIncorrecta = (cursor.getCount() == 0);
+
+        cursor.close();
+        database.close();
+
+        return contraseñaIncorrecta;
+
+    }
+
+    public int checkpass(String password, String nombre) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select * from Usuario Where nombre=? and password = ?", new String[]{nombre.trim(), password.trim()});
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            return cursor.getInt(0);
+        } else {
+            return -1;
+        }
     }
 
     public boolean insertEquipo(String n_serie, String tipo, String estatus,
@@ -149,6 +212,7 @@ public class DataBase extends SQLiteOpenHelper {
 
         return existe;
     }
+
 
     public ArrayList<Date> mostrarEquipos() {
         SQLiteDatabase database = this.getWritableDatabase();
@@ -707,6 +771,36 @@ public class DataBase extends SQLiteOpenHelper {
         }
 
         return listdatos;
+    }
+
+    public ArrayList<Date> mostrarEquiposPendientes() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ArrayList<Date> list = new ArrayList<>();
+        Cursor cursor = null;
+
+        try {
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_MANTENIMIENTO, null);
+
+            while (cursor.moveToNext()) {
+                Date date = new Date();
+                date.setN_serie(cursor.getString(1));
+                date.setTipo(cursor.getString(2));
+                date.setEstatus(cursor.getString(3));
+                date.setDescripcion(cursor.getString(4));
+                date.setFecha_llegada(cursor.getString(5));
+                date.setFecha_entrega(cursor.getString(6));
+
+                list.add(date);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return list;
     }
 
     public ArrayList<Date> mostrarEquiposPorNombre(String propietario) {

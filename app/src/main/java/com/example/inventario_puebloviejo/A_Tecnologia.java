@@ -36,9 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class A_Tecnologia extends AppCompatActivity {
-
-    private static final int REQUEST_PERMISSIONS = 1;
-    private static final int REQUEST_CODE_CREATE_PDF = 123; // Puedes usar cualquier valor único aquí
+    private static final int REQUEST_CODE_CREATE_PDF = 123;
     DataBase db;
     private ArrayList<Date> date;
     RecyclerView recyclerView;

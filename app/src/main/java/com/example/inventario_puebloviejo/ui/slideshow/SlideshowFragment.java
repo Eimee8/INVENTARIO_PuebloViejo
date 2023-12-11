@@ -6,8 +6,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,26 +31,35 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.inventario_puebloviejo.BroadcastReceiver;
+import com.example.inventario_puebloviejo.MainActivity;
 import com.example.inventario_puebloviejo.R;
-import com.example.inventario_puebloviejo.Registro_equipo;
 import com.example.inventario_puebloviejo.databinding.FragmentSlideshowBinding;
 import com.example.inventario_puebloviejo.db.DataBase;
 import com.example.inventario_puebloviejo.db.Date;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class SlideshowFragment extends Fragment {
-
+    private static final int REQUEST_CODE_CREATE_PDF = 123;
     Spinner spinnerTipo;
     Spinner spinnerEstatus;
 
     EditText serie, descripcion;
     Spinner tipo, status;
-    Button btnGuardar, pdf, btnllegada, btnentrega;
+    Button btnGuardar, btnPDF, btnllegada, btnentrega;
 
     DataBase db;
     ArrayAdapter<CharSequence> spinnerAdapter;
@@ -67,6 +80,10 @@ public class SlideshowFragment extends Fragment {
 
         db = new DataBase(this.getContext());
 
+        date = new ArrayList();
+
+        date = db.mostrarEquipos();
+
         spinnerTipo = root.findViewById(R.id.TipoAgenda);
         CharSequence[] opciones = getResources().getTextArray(R.array.opciones_tipoAgenda);
         spinnerAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, opciones);
@@ -83,6 +100,8 @@ public class SlideshowFragment extends Fragment {
         descripcion = root.findViewById(R.id.descripcionAgenda);
         tipo = root.findViewById(R.id.TipoAgenda);
         status = root.findViewById(R.id.EstatusAgenda);
+
+        btnPDF = root.findViewById(R.id.btnPDFAgenda);
 
         btnllegada = root.findViewById(R.id.fchllegada);
         calendarLlegada = Calendar.getInstance();
@@ -143,6 +162,14 @@ public class SlideshowFragment extends Fragment {
             }
         });
 
+        btnPDF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
         return root;
     }
 
@@ -159,7 +186,7 @@ public class SlideshowFragment extends Fragment {
         };
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-                requireContext(), // Utiliza requireContext() para obtener el contexto del fragmento
+                requireContext(),
                 dateSetListener,
                 calendarLlegada.get(Calendar.YEAR),
                 calendarLlegada.get(Calendar.MONTH),
@@ -188,7 +215,7 @@ public class SlideshowFragment extends Fragment {
         };
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-                requireContext(), // Utiliza requireContext() para obtener el contexto del fragmento
+                requireContext(),
                 dateSetListener,
                 calendarEntrega.get(Calendar.YEAR),
                 calendarEntrega.get(Calendar.MONTH),
@@ -208,10 +235,9 @@ public class SlideshowFragment extends Fragment {
     }
 
     private void agregarNotificacion(Calendar fechaNotificacion) {
-        // Obtener el sistema de notificaciones
         NotificationManager notificationManager = (NotificationManager) requireContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // Configurar un canal de notificación (si aún no está configurado)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String canalId = "canal_id";
             CharSequence nombreCanal = "Nombre del Canal";
@@ -221,16 +247,13 @@ public class SlideshowFragment extends Fragment {
             NotificationChannel canal = new NotificationChannel(canalId, nombreCanal, importancia);
             canal.setDescription(descripcionCanal);
 
-            // Registra el canal en el sistema; puedes personalizar más opciones aquí
             notificationManager.createNotificationChannel(canal);
         }
 
-        // Crear un intent para la actividad que se abrirá al hacer clic en la notificación
-        Intent intent = new Intent(requireContext(), SlideshowFragment.class);
-        int requestCode = 1;  // Cambia esto a un valor único para cada notificación
+        Intent intent = new Intent(requireContext(), MainActivity.class);
+        int requestCode = 1;
         PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
 
-        // Configurar el builder de la notificación
         NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "canal_id")
                 .setSmallIcon(R.drawable.notification)
                 .setContentTitle("Recordatorio")
@@ -239,16 +262,18 @@ public class SlideshowFragment extends Fragment {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        // Calcular la hora para la notificación (un día antes)
         fechaNotificacion.add(Calendar.DAY_OF_MONTH, -1);
         long tiempoNotificacion = fechaNotificacion.getTimeInMillis();
 
-        // Configurar el AlarmManager para la notificación
+
         AlarmManager alarmManager = (AlarmManager) requireContext().getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC, tiempoNotificacion, pendingIntent);
 
-        int notificationId = 1; // Cambia esto a un valor único para cada notificación
+        int notificationId = 1;
         notificationManager.notify(notificationId, builder.build());
     }
+
+
+
 
 }

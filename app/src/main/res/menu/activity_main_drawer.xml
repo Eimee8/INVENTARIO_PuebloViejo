@@ -21,5 +21,9 @@
             android:icon="@drawable/baseline_person_outline_24"
             android:title="Perfil"/>
 
+        <item android:id="@+id/pendientes"
+            android:icon="@drawable/task"
+            android:title="Pendientes"/>
+
     </group>
 </menu>

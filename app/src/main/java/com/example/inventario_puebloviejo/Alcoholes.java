@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.inventario_puebloviejo.databinding.ActivityAlcoholesBinding;
 import com.example.inventario_puebloviejo.db.AdapterEquipo;
 import com.example.inventario_puebloviejo.db.DataBase;
 import com.example.inventario_puebloviejo.db.Date;
@@ -32,10 +33,13 @@ public class Alcoholes extends AppCompatActivity {
     private ArrayList<Date> date;
     RecyclerView recyclerView;
 
+    private ActivityAlcoholesBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alcoholes);
+        binding = ActivityAlcoholesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         db = new DataBase(this);
         recyclerView = findViewById(R.id.VistaAlcoholes);
@@ -82,19 +86,16 @@ public class Alcoholes extends AppCompatActivity {
         try {
             OutputStream outputStream = getContentResolver().openOutputStream(uri);
             if (outputStream != null) {
-                // Configurar el escritor PDF
+
                 PdfWriter pdfWriter = new PdfWriter(outputStream);
                 PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 
-                // Inicializar el documento iTextPdf
                 Document document = new Document(pdfDocument);
 
-                // Agregar el título centrado al documento
                 Paragraph title = new Paragraph("Reporte de Equipos");
                 title.setTextAlignment(TextAlignment.CENTER);
                 document.add(title);
 
-                // Obtener datos de la tabla y agregarlos al documento
                 for (Date equipo : date) {
                     document.add(new Paragraph("Estatus: " + equipo.getEstatus()));
                     document.add(new Paragraph("Tipo: " + equipo.getTipo()));

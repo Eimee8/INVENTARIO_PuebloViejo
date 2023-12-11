@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 public class Egresos extends AppCompatActivity {
 
-    private static final int REQUEST_CODE_CREATE_PDF = 123; // Puedes usar cualquier valor único aquí
+    private static final int REQUEST_CODE_CREATE_PDF = 123;
     DataBase db;
     private ArrayList <Date> date;
     RecyclerView recyclerView;

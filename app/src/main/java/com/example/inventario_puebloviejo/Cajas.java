@@ -94,7 +94,6 @@ public class Cajas extends AppCompatActivity {
                 title.setTextAlignment(TextAlignment.CENTER);
                 document.add(title);
 
-                // Obtener datos de la tabla y agregarlos al documento
                 for (Date equipo : date) {
                     document.add(new Paragraph("Estatus: " + equipo.getEstatus()));
                     document.add(new Paragraph("Tipo: " + equipo.getTipo()));

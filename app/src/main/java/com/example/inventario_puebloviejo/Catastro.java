@@ -86,15 +86,12 @@ public class Catastro extends AppCompatActivity {
                 PdfWriter pdfWriter = new PdfWriter(outputStream);
                 PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 
-                // Inicializar el documento iTextPdf
                 Document document = new Document(pdfDocument);
 
-                // Agregar el título centrado al documento
                 Paragraph title = new Paragraph("Reporte de Equipos");
                 title.setTextAlignment(TextAlignment.CENTER);
                 document.add(title);
 
-                // Obtener datos de la tabla y agregarlos al documento
                 for (Date equipo : date) {
                     document.add(new Paragraph("Estatus: " + equipo.getEstatus()));
                     document.add(new Paragraph("Tipo: " + equipo.getTipo()));

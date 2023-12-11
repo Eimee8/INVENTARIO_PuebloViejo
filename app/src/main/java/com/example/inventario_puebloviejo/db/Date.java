@@ -16,6 +16,7 @@ public class Date {
     private String propietario;
     private String fecha_ini;
 
+    private String fecha_entrega;
     private String fecha_llegada;
     private String descripcion;
     private String entrega;
@@ -38,6 +39,7 @@ public class Date {
         this.propietario = propietario;
         this.fecha_ini = fecha_ini;
 
+        this.fecha_entrega = fecha_entrega;
         this.fecha_llegada = fecha_llegada;
         this.descripcion = descripcion;
         this.entrega = entrega;
@@ -142,12 +144,21 @@ public class Date {
         this.fecha_llegada = fecha_llegada;
     }
 
-    private String getDescripcion(){
+    public String getFecha_entrega() {
+        return fecha_entrega;
+    }
+
+    public void setFecha_entrega(String fecha_entrega) {
+        this.fecha_entrega = fecha_entrega;
+    }
+
+    public String getDescripcion(){
         return descripcion;
     }
-    private void setDescripcion(String descripcion){
+    public void setDescripcion(String descripcion){
         this.descripcion = descripcion;
     }
+
 
     private String getEntrega(){
         return entrega;
