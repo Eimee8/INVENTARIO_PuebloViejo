@@ -2,21 +2,17 @@ package com.example.inventario_puebloviejo.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-
-import androidx.annotation.Nullable;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 29;
 
     private static final String DATABASE_NOMBRE = "DataBasePV.db";
     private static final String TABLE_USUARIO = "Usuario";
@@ -24,6 +20,11 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String TABLE_DEPARTAMENTO = "Area";
     private static final String TABLE_EQUIPO = "Equipo";
     private static final String TABLE_MANTENIMIENTO = "Mantenimiento";
+
+    private static final String PREFS_NAME = "Preferences";
+    private static final String PREF_SESSION_STARTED = "sessionStarted";
+
+    private Context context;
 
 
     public DataBase(Context context) {
@@ -41,7 +42,12 @@ public class DataBase extends SQLiteOpenHelper {
                 "password TEXT NOT NULL," +
                 "telefono TEXT NOT NULL)");
 
-        //insertarUsuario(db,"123", "Ingeniero", "correo@ejemplo.com", "123", "8331235649");
+        String INSERT_INITIAL_DATA = "INSERT INTO " + TABLE_USUARIO +
+                " (nombre, puesto, correo, password, telefono) VALUES " +
+                "('123', 'Puesto1', 'usuario@example.com', '123', '123456789')";
+
+        db.execSQL(INSERT_INITIAL_DATA);
+
 
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_DEPARTAMENTO + "("+
                 "id_area INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -79,16 +85,9 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DEPARTAMENTO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MANTENIMIENTO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EQUIPO);
+
         onCreate(db);
 
-        /*insertarUsuario(db, "123", "Ingeniero", "correo@ejemplo.com", "123", "8331235649");
-        long idUsuarioPrueba = insertarUsuario(db, "UsuarioPrueba", "Ingeniero", "correo_prueba@ejemplo.com", "contraseña123", "123456789");
-
-        if (idUsuarioPrueba != -1) {
-            Log.d("DatabaseHelper", "Usuario de prueba insertado correctamente con ID: " + idUsuarioPrueba);
-        } else {
-            Log.e("DatabaseHelper", "Error al insertar usuario de prueba");
-        }*/
     }
 
     @Override
@@ -96,61 +95,63 @@ public class DataBase extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    public long insertarUsuario(SQLiteDatabase db, String nombre, String puesto, String correo, String password, String telefono) {
-        ContentValues values = new ContentValues();
+    public boolean usuarioCorrecto(String nombre) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
 
-        values.put("nombre", nombre);
-        values.put("Ingeniero", puesto);
-        values.put("correo", correo);
-        values.put("password", password);
-        values.put("telefono", telefono);
+        try {
+            String query = "SELECT nombre FROM " + TABLE_USUARIO + " WHERE nombre = ?";
+            cursor = db.rawQuery(query, new String[]{nombre});
 
-        long resultado = db.insert(TABLE_USUARIO, null, values);
-
-        db.close();
-
-        return resultado;
-    }
-
-    public boolean usuarioError(String nombre) {
-        SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM Usuario WHERE nombre=?", new String[]{nombre});
-
-        boolean usuarioError = (cursor.getCount() == 0);
-
-        cursor.close();
-        database.close();
-
-        return usuarioError;
-
-    }
-
-    public boolean contraseñaError(String password){
-        SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("Select * from Usuario Where password=?", new String[]{password});
-
-        boolean contraseñaIncorrecta = (cursor.getCount() == 0);
-
-        cursor.close();
-        database.close();
-
-        return contraseñaIncorrecta;
-
-    }
-
-    public int checkpass(String password, String nombre) {
-        SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("Select * from Usuario Where nombre=? and password = ?", new String[]{nombre.trim(), password.trim()});
-
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            return cursor.getInt(0);
-        } else {
-            return -1;
+            if (cursor != null && cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndex("nombre");
+                return columnIndex != -1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
+
+        return false;
     }
 
-    public boolean insertEquipo(String n_serie, String tipo, String estatus,
+    public boolean contraseñaCorrecta(String nombre, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        try {
+            String query = "SELECT password FROM " + TABLE_USUARIO + " WHERE nombre = ?";
+            cursor = db.rawQuery(query, new String[]{nombre});
+
+            if (cursor != null && cursor.moveToFirst()) {
+
+                int columnIndex = cursor.getColumnIndex("password");
+                if (columnIndex != -1) {
+                    String contraseñaAlmacenada = cursor.getString(columnIndex);
+
+                    return contraseñaAlmacenada.equals(password);
+                } else {
+                    Log.d("error", "No se encontró la columna 'password'");
+                }
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return false;
+    }
+
+
+
+        public boolean insertEquipo(String n_serie, String tipo, String estatus,
                                 String marca, String propietario, String area, String fecha_ini) {
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
@@ -827,58 +828,4 @@ public class DataBase extends SQLiteOpenHelper {
         return listDatos;
     }
 
-    public ArrayList<Date> mostrarEquiposPorTipo(String tipo) {
-        ArrayList<Date> listDatos = new ArrayList<>();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = null;
-
-        try {
-            cursor = db.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE tipo LIKE ?", new String[]{"%" + tipo + "%"});
-
-            while (cursor != null && cursor.moveToNext()) {
-                Date dato = new Date();
-                dato.setEstatus(cursor.getString(3));
-                dato.setTipo(cursor.getString(2));
-                dato.setMarca(cursor.getString(4));
-                dato.setN_serie(cursor.getString(1));
-                dato.setNombre_area(cursor.getString(6));
-                dato.setFecha_ini(cursor.getString(7));
-                dato.setPropietario(cursor.getString(5));
-
-                listDatos.add(dato);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-
-        return listDatos;
-    }
-
-    public ArrayList<Date> mostrarEquiposPorTipoArea(String area) {
-        ArrayList<Date> listDatos = new ArrayList<>();
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        try (Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EQUIPO + " WHERE area = ?", new String[]{"%" + area + "%"})) {
-            while (cursor != null && cursor.moveToNext()) {
-                Date datos = new Date();
-                datos.setEstatus(cursor.getString(3));
-                datos.setTipo(cursor.getString(2));
-                datos.setMarca(cursor.getString(4));
-                datos.setN_serie(cursor.getString(1));
-                datos.setNombre_area(cursor.getString(6));
-                datos.setFecha_ini(cursor.getString(7));
-                datos.setPropietario(cursor.getString(5));
-
-                listDatos.add(datos);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return listDatos;
-    }
 }

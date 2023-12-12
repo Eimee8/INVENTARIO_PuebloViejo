@@ -1,7 +1,9 @@
 package com.example.inventario_puebloviejo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,4 +66,5 @@ public class MainActivity extends AppCompatActivity {
     public void setToolbarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
+
 }

@@ -31,6 +31,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.inventario_puebloviejo.BroadcastReceiver;
+import com.example.inventario_puebloviejo.Inicio_Sesion;
 import com.example.inventario_puebloviejo.MainActivity;
 import com.example.inventario_puebloviejo.R;
 import com.example.inventario_puebloviejo.databinding.FragmentSlideshowBinding;
@@ -250,7 +251,7 @@ public class SlideshowFragment extends Fragment {
             notificationManager.createNotificationChannel(canal);
         }
 
-        Intent intent = new Intent(requireContext(), MainActivity.class);
+        Intent intent = new Intent(requireContext(), Inicio_Sesion.class);
         int requestCode = 1;
         PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
 

@@ -17,9 +17,7 @@ import com.example.inventario_puebloviejo.ui.home.HomeFragment;
 
 public class Inicio_Sesion extends AppCompatActivity {
 
-     EditText nombre;
-     EditText pass;
-
+     EditText nombre, pass;
     DataBase db;
     private Button sesion;
 
@@ -31,15 +29,44 @@ public class Inicio_Sesion extends AppCompatActivity {
         binding = ActivityInicioSesionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        db = new DataBase(this);
+
+        nombre = (EditText) findViewById(R.id.nombre);
+
+        pass = (EditText) findViewById(R.id.password);
 
         sesion = (Button) findViewById(R.id.login);
 
         sesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Inicio_Sesion.this, MainActivity.class);
-                startActivity(i);
+                String nombre = binding.nombre.getText().toString();
+                String pass = binding.password.getText().toString();
 
+                if (nombre.isEmpty() || pass.isEmpty()) {
+
+                    Toast.makeText(Inicio_Sesion.this, "Los campos están vacíos", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    boolean usuarioCorrecto = db.usuarioCorrecto(nombre);
+
+                    if (usuarioCorrecto) {
+                        boolean contraseñaCorrecta = db.contraseñaCorrecta(nombre, pass);
+
+                        if (contraseñaCorrecta) {
+
+                            Toast.makeText(Inicio_Sesion.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent(Inicio_Sesion.this, MainActivity.class);
+                            startActivity(i);
+
+                        } else {
+                            Toast.makeText(Inicio_Sesion.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(Inicio_Sesion.this, "Usuario incorrecto", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
     }
