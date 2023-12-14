@@ -1,18 +1,23 @@
 package com.example.inventario_puebloviejo.db;
 
+import static java.util.jar.Pack200.Packer.PASS;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 29;
+    private static final int DATABASE_VERSION = 31;
 
     private static final String DATABASE_NOMBRE = "DataBasePV.db";
     private static final String TABLE_USUARIO = "Usuario";
@@ -44,7 +49,7 @@ public class DataBase extends SQLiteOpenHelper {
 
         String INSERT_INITIAL_DATA = "INSERT INTO " + TABLE_USUARIO +
                 " (nombre, puesto, correo, password, telefono) VALUES " +
-                "('123', 'Puesto1', 'usuario@example.com', '123', '123456789')";
+                "('Admin', 'Ingeniero', 'admin@pviejo.com', '123', '123456789')";
 
         db.execSQL(INSERT_INITIAL_DATA);
 
@@ -101,7 +106,7 @@ public class DataBase extends SQLiteOpenHelper {
 
         try {
             String query = "SELECT nombre FROM " + TABLE_USUARIO + " WHERE nombre = ?";
-            cursor = db.rawQuery(query, new String[]{nombre});
+            cursor = db.rawQuery(query, new String[]{nombre.trim()});
 
             if (cursor != null && cursor.moveToFirst()) {
                 int columnIndex = cursor.getColumnIndex("nombre");
@@ -124,7 +129,7 @@ public class DataBase extends SQLiteOpenHelper {
 
         try {
             String query = "SELECT password FROM " + TABLE_USUARIO + " WHERE nombre = ?";
-            cursor = db.rawQuery(query, new String[]{nombre});
+            cursor = db.rawQuery(query, new String[]{nombre.trim()});
 
             if (cursor != null && cursor.moveToFirst()) {
 
@@ -147,6 +152,31 @@ public class DataBase extends SQLiteOpenHelper {
         }
 
         return false;
+    }
+
+    public ArrayList<Date> mostrarDatosUsuario(String nombre) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        ArrayList<Date> listaUsuarios = new ArrayList<>();
+        Date usuario = null;
+
+        // Uso de parámetros en la consulta para evitar la inyección de SQL
+        String query = "SELECT * FROM " + TABLE_USUARIO + " WHERE nombre = ?";
+        Cursor cursor = database.rawQuery(query, new String[]{nombre});
+
+        if (cursor.moveToFirst()) {
+            do {
+                usuario = new Date();
+                usuario.setNombre(cursor.getString(1));
+                usuario.setPuesto(cursor.getString(2));
+                usuario.setCorreo(cursor.getString(3));
+                usuario.setTelefono(cursor.getString(5));  // Asume que el teléfono está en la quinta columna
+
+                listaUsuarios.add(usuario);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return listaUsuarios;
     }
 
 

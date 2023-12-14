@@ -27,18 +27,4 @@
 
     </group>
 
-
-        <item
-            android:title="">
-
-            <menu>
-               <item  android:title="" />
-            </menu>
-
-        </item>
-
-    <item android:id="@+id/cerrarsesion"
-        android:icon="@drawable/perfilcierre"
-        android:title="Cerrar Sesión"/>
-
 </menu>

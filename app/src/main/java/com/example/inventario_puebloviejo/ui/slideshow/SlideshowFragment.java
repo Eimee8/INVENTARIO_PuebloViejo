@@ -251,9 +251,16 @@ public class SlideshowFragment extends Fragment {
             notificationManager.createNotificationChannel(canal);
         }
 
-        Intent intent = new Intent(requireContext(), Inicio_Sesion.class);
+        Intent intent = new Intent(requireContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
         int requestCode = 1;
-        PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                requireContext(),
+                requestCode,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+        );
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "canal_id")
                 .setSmallIcon(R.drawable.notification)

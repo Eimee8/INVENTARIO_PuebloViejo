@@ -1,5 +1,8 @@
 package com.example.inventario_puebloviejo.db;
 
+import static android.service.autofill.Validators.or;
+
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,8 +10,10 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,22 +25,28 @@ import com.example.inventario_puebloviejo.db.Date;
 import java.util.ArrayList;
 
 public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder> {
-    static ArrayList<Date>lista;
+    static ArrayList<Date> lista;
+    private Context context;
+
 
     public AdapterEquipo(ArrayList<Date> lista, Context context) {
         this.lista = lista;
+        this.context = context;
+
+
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.equipo,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.equipo, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+
 
         holder.status.setText(lista.get(position).getEstatus());
         holder.tipo.setText(lista.get(position).getTipo());
@@ -45,11 +56,6 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
         holder.fecha.setText(lista.get(position).getFecha_ini());
         holder.propietario.setText(lista.get(position).getPropietario());
 
-        //Datos datos = lista.get(position);
-      //  byte[] imagen = datos.getImagen();
-        //Bitmap bitmap = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
-       // holder.imagen.setImageBitmap(bitmap);
-
     }
 
     @Override
@@ -58,13 +64,14 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
     }
 
     public void actualizarDatos(ArrayList<Date> nuevosDatos) {
-        this.lista.clear(); // Limpiar la lista existente
-        this.lista.addAll(nuevosDatos); // Agregar los nuevos datos
-        notifyDataSetChanged(); // Notificar al adaptador que los datos han cambiado
+        this.lista.clear();
+        this.lista.addAll(nuevosDatos);
+        notifyDataSetChanged();
     }
 
-    public static class ViewHolder  extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView status, tipo, marca, serie, nomarea, fecha, propietario;
+        private ImageView eliminar;
 
 
         public ViewHolder(@NonNull View View) {
@@ -79,10 +86,20 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
             nomarea = View.findViewById(R.id.nomArea);
             fecha = View.findViewById(R.id.Fecha);
             propietario = View.findViewById(R.id.propietarioEquipo);
+            eliminar = View.findViewById(R.id.reciclaje);
+
+            eliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(android.view.View v) {
 
 
+                }
 
+            });
         }
+
+
+
 
     }
 }

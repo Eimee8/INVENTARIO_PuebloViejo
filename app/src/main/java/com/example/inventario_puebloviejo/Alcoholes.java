@@ -48,7 +48,7 @@ public class Alcoholes extends AppCompatActivity {
         date = new ArrayList<>();
         date = db.mostrarAlcoholes();
 
-        AdapterEquipo adapter = new AdapterEquipo(date, this);
+        AdapterEquipo adapter = new AdapterEquipo(date,this);
         recyclerView.setAdapter(adapter);
 
         Button generarPDFbtn = findViewById(R.id.btnPDFAlcoholes);
