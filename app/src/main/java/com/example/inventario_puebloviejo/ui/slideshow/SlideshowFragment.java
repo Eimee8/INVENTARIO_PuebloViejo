@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.example.inventario_puebloviejo.BroadcastReceiver;
 import com.example.inventario_puebloviejo.MainActivity;
+import com.example.inventario_puebloviejo.NotificationReceiver;
 import com.example.inventario_puebloviejo.R;
 import com.example.inventario_puebloviejo.databinding.FragmentSlideshowBinding;
 import com.example.inventario_puebloviejo.db.DataBase;
@@ -237,7 +238,6 @@ public class SlideshowFragment extends Fragment {
     private void agregarNotificacion(Calendar fechaNotificacion) {
         NotificationManager notificationManager = (NotificationManager) requireContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String canalId = "canal_id";
             CharSequence nombreCanal = "Nombre del Canal";
@@ -250,21 +250,19 @@ public class SlideshowFragment extends Fragment {
             notificationManager.createNotificationChannel(canal);
         }
 
-        Intent intent = new Intent(requireContext(), MainActivity.class);
-        int requestCode = 1;
-        PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "canal_id")
                 .setSmallIcon(R.drawable.notification)
                 .setContentTitle("Recordatorio")
                 .setContentText("Tu evento está programado para mañana")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
         fechaNotificacion.add(Calendar.DAY_OF_MONTH, -1);
         long tiempoNotificacion = fechaNotificacion.getTimeInMillis();
 
+        Intent intent = new Intent(requireContext(), NotificationReceiver.class);
+        int requestCode = 1;
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) requireContext().getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC, tiempoNotificacion, pendingIntent);
@@ -272,8 +270,5 @@ public class SlideshowFragment extends Fragment {
         int notificationId = 1;
         notificationManager.notify(notificationId, builder.build());
     }
-
-
-
 
 }
