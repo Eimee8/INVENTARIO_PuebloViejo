@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,9 +8,14 @@
 
     <TextView
         android:id="@+id/pv"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
         android:gravity="center"
         android:text="PUEBLO VIEJO"
         android:textColor="@color/black"
@@ -24,6 +29,12 @@
         android:id="@+id/escudo"
         android:layout_width="300dp"
         android:layout_height="500dp"
+        android:layout_below="@+id/pv"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
         android:src="@drawable/escudo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,13 +42,18 @@
 
     <TextView
         android:id="@+id/gobmuni"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/escudo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
         android:gravity="center"
         android:text="GOBIERNO MUNICIPAL"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,4 +69,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gobmuni" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,171 +11,220 @@
         android:id="@+id/TVSerie"
         android:layout_width="250dp"
         android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
-        android:text="No° Serie"
+        android:layout_marginEnd="145dp"
         android:background="@color/vino"
+        android:gravity="center"
+        android:text="No° Serie"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="20sp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
 
     <EditText
         android:id="@+id/noserie"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="No° Serie"
+        android:layout_marginEnd="145dp"
+        android:layout_below="@+id/TVSerie"
         android:drawableLeft="@drawable/baseline_qr_code_24"
-        android:drawablePadding="5dp"/>
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="No° Serie"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/TVTipo"
         android:layout_width="190dp"
         android:layout_height="30dp"
+        android:layout_below="@+id/noserie"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
-        android:text="Tipo"
+        android:layout_marginEnd="205dp"
         android:background="@color/vino"
+        android:gravity="center"
+        android:text="Tipo"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="20dp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/Tipo"
         android:layout_width="190dp"
         android:layout_height="50dp"
+        android:layout_below="@+id/TVTipo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="205dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Tipo"
-        android:spinnerMode="dropdown"
-        />
+        android:inputType="text"
+        android:spinnerMode="dropdown" />
 
     <TextView
         android:id="@+id/TVEstatus"
         android:layout_width="190dp"
         android:layout_height="30dp"
+        android:layout_below="@+id/Tipo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="210dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="-90dp"
-        android:text="Estatus"
+        android:layout_marginEnd="20dp"
         android:background="@color/vino"
+        android:gravity="center"
+        android:text="Estatus"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="20sp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/Status"
         android:layout_width="190dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/TVEstatus"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="210dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp">
+
     </Spinner>
 
     <TextView
         android:id="@+id/TVMarca"
         android:layout_width="190dp"
         android:layout_height="30dp"
+        android:layout_below="@+id/Tipo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
-        android:text="Marca"
+        android:layout_marginEnd="205dp"
         android:background="@color/vino"
+        android:gravity="center"
+        android:text="Marca"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="20dp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/Marca"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/TVMarca"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="205dp"
         android:ems="10"
-        android:inputType="text"
-        android:hint="Marca"/>
+        android:hint="Marca"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/TVPropietario"
         android:layout_width="190dp"
         android:layout_height="30dp"
+        android:layout_below="@+id/Marca"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="210dp"
         android:layout_marginTop="-85dp"
         android:layout_marginEnd="20dp"
-        android:text="Propietario"
         android:background="@color/vino"
+        android:gravity="center"
+        android:text="Propietario"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="20sp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
 
     <EditText
         android:id="@+id/propietario"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/TVPropietario"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="210dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Propietario"
         android:drawableLeft="@drawable/baseline_person_outline_24"
-        android:drawablePadding="5dp"/>
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="Propietario"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/TVArea"
         android:layout_width="190dp"
         android:layout_height="30dp"
+        android:layout_below="@+id/Marca"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
-        android:text="Area"
+        android:layout_marginEnd="205dp"
         android:background="@color/vino"
+        android:gravity="center"
+        android:text="Area"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="20sp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/Area"
         android:layout_width="190dp"
         android:layout_height="50dp"
+        android:layout_below="@+id/TVArea"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginEnd="205dp" />
 
 
     <Button
         android:id="@+id/btnSeleccionarFecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:text="Fecha DE ASIGNACION"
-        android:layout_centerInParent="true"/>
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginEnd="100dp"
+        android:text="Fecha DE ASIGNACION" />
 
 
     <Button
         android:id="@+id/btnRegistroEquipo"
         android:layout_width="150dp"
         android:layout_height="50dp"
+        android:layout_below="@+id/btnSeleccionarFecha"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="130dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="130dp"
+        android:backgroundTint="@color/vino"
         android:text="Guardar"
         android:textColor="@color/white"
         android:textSize="15dp"
-        android:textStyle="bold"
-        android:backgroundTint="@color/vino"/>
+        android:textStyle="bold" />
 
-</LinearLayout>
+</RelativeLayout>
