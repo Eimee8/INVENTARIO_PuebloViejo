@@ -7,7 +7,7 @@
     android:background="@color/gris"
     tools:context=".ui.home.HomeFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -16,24 +16,37 @@
             android:id="@+id/logopie"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="336dp"
             android:src="@drawable/logopie">
+
         </ImageView>
 
         <ImageView
+            android:id="@+id/escudo"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="330dp"
-            android:layout_marginTop="-74dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="335dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="11dp"
             android:src="@drawable/escudo">
+
         </ImageView>
 
         <TextView
+            android:id="@+id/controlygestor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="-70dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
+            android:layout_below="@id/equipodecomputo"
             android:text="Control/Gestor"
             android:textColor="@color/black"
             android:textSize="30dp"
@@ -41,9 +54,11 @@
         </TextView>
 
         <TextView
+            android:id="@+id/equipodecomputo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             android:text="Equipo de Computo"
             android:textColor="@color/black"
             android:textSize="30dp"
@@ -51,19 +66,26 @@
         </TextView>
 
         <GridLayout
+            android:id="@+id/uno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
-            android:rowCount="4">
+            android:rowCount="4"
+            android:layout_below="@+id/controlygestor">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="180dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -75,8 +97,8 @@
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
-                    android:background="@drawable/egresos"
-                    >
+                    android:background="@drawable/egresos">
+
                 </ImageView>
 
                 <TextView
@@ -88,6 +110,7 @@
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
                     android:textStyle="normal">
+
                 </TextView>
             </androidx.cardview.widget.CardView>
 
@@ -97,7 +120,7 @@
                 android:layout_row="0"
                 android:layout_column="1"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="-5dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -109,6 +132,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/ingresos">
+
                 </ImageButton>
 
                 <TextView
@@ -120,15 +144,23 @@
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
                     android:textStyle="normal">
+
                 </TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/dos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/uno"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
             android:rowCount="4">
@@ -149,6 +181,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/tesoreria">
+
                 </ImageButton>
 
                 <TextView
@@ -160,6 +193,7 @@
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
                     android:textStyle="normal">
+
                 </TextView>
             </androidx.cardview.widget.CardView>
 
@@ -181,6 +215,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/cajas">
+
                 </ImageButton>
 
                 <TextView
@@ -198,10 +233,17 @@
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/tres"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/dos"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
             android:rowCount="4">
@@ -222,6 +264,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/catastro">
+
                 </ImageButton>
 
                 <TextView
@@ -233,6 +276,7 @@
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
                     android:textStyle="normal">
+
                 </TextView>
             </androidx.cardview.widget.CardView>
 
@@ -254,6 +298,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/contraloria">
+
                 </ImageButton>
 
                 <TextView
@@ -265,15 +310,21 @@
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
                     android:textStyle="normal">
+
                 </TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/cuatro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tres"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
             android:rowCount="4">
@@ -293,8 +344,7 @@
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
-                    android:background="@drawable/registrocivil">
-                </ImageView>
+                    android:background="@drawable/registrocivil"></ImageView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -305,6 +355,7 @@
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
                     android:textStyle="normal">
+
                 </TextView>
             </androidx.cardview.widget.CardView>
 
@@ -326,6 +377,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/secretarias">
+
                 </ImageView>
 
                 <TextView
@@ -342,9 +394,14 @@
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/cinco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/cuatro"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_margin="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -414,9 +471,14 @@
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/seis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/cinco"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_margin="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -486,9 +548,14 @@
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/siete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/seis"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_margin="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -559,9 +626,14 @@
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/ocho"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/siete"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_margin="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -631,9 +703,14 @@
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/nueve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/ocho"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_margin="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -703,9 +780,14 @@
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/diez"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/nueve"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_margin="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -775,9 +857,14 @@
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/once"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/diez"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_margin="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -845,5 +932,5 @@
                 </TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>
