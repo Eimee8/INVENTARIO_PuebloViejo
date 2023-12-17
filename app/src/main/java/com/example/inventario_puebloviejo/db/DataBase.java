@@ -169,7 +169,7 @@ public class DataBase extends SQLiteOpenHelper {
                 usuario.setNombre(cursor.getString(1));
                 usuario.setPuesto(cursor.getString(2));
                 usuario.setCorreo(cursor.getString(3));
-                usuario.setTelefono(cursor.getString(5));  // Asume que el teléfono está en la quinta columna
+                usuario.setTelefono(cursor.getString(5));
 
                 listaUsuarios.add(usuario);
             } while (cursor.moveToNext());

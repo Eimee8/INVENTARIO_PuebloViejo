@@ -60,7 +60,7 @@ public class SlideshowFragment extends Fragment {
 
     EditText serie, descripcion;
     Spinner tipo, status;
-    Button btnGuardar, btnPDF, btnllegada, btnentrega;
+    Button btnGuardar, btnllegada, btnentrega;
 
     DataBase db;
     ArrayAdapter<CharSequence> spinnerAdapter;
@@ -101,8 +101,6 @@ public class SlideshowFragment extends Fragment {
         descripcion = root.findViewById(R.id.descripcionAgenda);
         tipo = root.findViewById(R.id.TipoAgenda);
         status = root.findViewById(R.id.EstatusAgenda);
-
-        btnPDF = root.findViewById(R.id.btnPDFAgenda);
 
         btnllegada = root.findViewById(R.id.fchllegada);
         calendarLlegada = Calendar.getInstance();
@@ -160,13 +158,6 @@ public class SlideshowFragment extends Fragment {
                         }
                     }
                 }
-            }
-        });
-
-        btnPDF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
 
