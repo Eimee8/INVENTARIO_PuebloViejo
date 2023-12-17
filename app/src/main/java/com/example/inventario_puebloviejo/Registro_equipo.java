@@ -3,6 +3,7 @@ package com.example.inventario_puebloviejo;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,7 @@ import java.util.Locale;
 
 import com.example.inventario_puebloviejo.databinding.ActivityRegistroEquipoBinding;
 import com.example.inventario_puebloviejo.db.DataBase;
+import com.example.inventario_puebloviejo.ui.gallery.GalleryFragment;
 
 public class Registro_equipo extends AppCompatActivity {
 
@@ -101,6 +103,9 @@ public class Registro_equipo extends AppCompatActivity {
                         boolean correcto = db.insertEquipo(serie, tipo, status, marca, prop, area, fechaSeleccionada);
                         if (correcto) {
                             Toast.makeText(Registro_equipo.this, "Se registró correctamente el equipo", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(Registro_equipo.this, GalleryFragment.class);
+                            startActivity(i);
+
                         } else {
                             Toast.makeText(Registro_equipo.this, "Error al registrar el equipo", Toast.LENGTH_SHORT).show();
                         }

@@ -92,10 +92,9 @@
         />
 
     <ImageView
-        android:id="@+id/reciclaje"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:src="@drawable/reciclaje"/>
+        android:src="@drawable/checklist"/>
 
 </LinearLayout>

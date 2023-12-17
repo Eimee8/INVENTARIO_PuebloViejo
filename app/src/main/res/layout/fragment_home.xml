@@ -148,7 +148,8 @@
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
-                    android:background="@drawable/tesoreria"></ImageButton>
+                    android:background="@drawable/tesoreria">
+                </ImageButton>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -158,7 +159,8 @@
                     android:text="Tesoreria"
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
-                    android:textStyle="normal"></TextView>
+                    android:textStyle="normal">
+                </TextView>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -178,7 +180,8 @@
                     android:layout_height="86dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
-                    android:background="@drawable/cajas"></ImageButton>
+                    android:background="@drawable/cajas">
+                </ImageButton>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -188,7 +191,9 @@
                     android:text="Cajas"
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="25dp"
-                    android:textStyle="normal"></TextView>
+                    android:textStyle="normal">
+
+                </TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
 

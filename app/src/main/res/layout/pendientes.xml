@@ -81,10 +81,6 @@
         android:textAlignment="center"
         />
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:src="@drawable/checklist"/>
+
 
 </LinearLayout>
