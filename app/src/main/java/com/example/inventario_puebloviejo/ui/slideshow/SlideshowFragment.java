@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +35,11 @@ import com.example.inventario_puebloviejo.BroadcastReceiver;
 import com.example.inventario_puebloviejo.MainActivity;
 import com.example.inventario_puebloviejo.NotificationReceiver;
 import com.example.inventario_puebloviejo.R;
+import com.example.inventario_puebloviejo.Registro_equipo;
 import com.example.inventario_puebloviejo.databinding.FragmentSlideshowBinding;
 import com.example.inventario_puebloviejo.db.DataBase;
 import com.example.inventario_puebloviejo.db.Date;
+import com.example.inventario_puebloviejo.ui.Pendientes;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -152,7 +155,14 @@ public class SlideshowFragment extends Fragment {
                         boolean correct = db.insertEquipoAgenda(serie, tipo, status, descripcion, fecha_llegada, fecha_entrega);
 
                         if (correct) {
+
                             Toast.makeText(getContext(), "Equipo registrado correctamente", Toast.LENGTH_SHORT).show();
+
+                            programarNotificacion(calendarLlegada);
+
+                            Intent intent = new Intent(getContext(), MainActivity.class);
+                            startActivity(intent);
+
                         } else {
                             Toast.makeText(getContext(), "Error al registrar el equipo", Toast.LENGTH_SHORT).show();
                         }
@@ -216,50 +226,68 @@ public class SlideshowFragment extends Fragment {
         datePickerDialog.show();
     }
 
-    private void actualizarFechaSeleccionadaE() {
+    private void programarNotificacion(Calendar fechaEvento) {
+        // Obtén el tiempo actual
+        long tiempoActual = System.currentTimeMillis();
+
+        // Resta un día a la fecha de evento
+        fechaEvento.add(Calendar.DAY_OF_MONTH, -1);
+
+        // Si la fecha de la notificación es en el futuro, programa la notificación
+        if (fechaEvento.getTimeInMillis() > tiempoActual) {
+            NotificationManager notificationManager = (NotificationManager) requireContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+    }
+
+            private void actualizarFechaSeleccionadaE() {
         String formatoFecha = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha, Locale.getDefault());
 
         String fechaSeleccionada = sdf.format(calendarEntrega.getTime());
         Toast.makeText(requireContext(), "Fecha seleccionada: " + fechaSeleccionada, Toast.LENGTH_SHORT).show();
 
-        agregarNotificacion(calendarLlegada);
+        agregarNotificacion(calendarEntrega);
     }
 
-    private void agregarNotificacion(Calendar fechaNotificacion) {
-        NotificationManager notificationManager = (NotificationManager) requireContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String canalId = "canal_id";
-            CharSequence nombreCanal = "Nombre del Canal";
-            String descripcionCanal = "Descripción del Canal";
-            int importancia = NotificationManager.IMPORTANCE_DEFAULT;
+            private void agregarNotificacion (Calendar CalendarEntrega) {
+                NotificationManager notificationManager = (NotificationManager) requireContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
-            NotificationChannel canal = new NotificationChannel(canalId, nombreCanal, importancia);
-            canal.setDescription(descripcionCanal);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    String canalId = "canal_id";
+                    CharSequence nombreCanal = "Nombre del Canal";
+                    String descripcionCanal = "Descripción del Canal";
+                    int importancia = NotificationManager.IMPORTANCE_DEFAULT;
 
-            notificationManager.createNotificationChannel(canal);
-        }
+                    NotificationChannel canal = new NotificationChannel(canalId, nombreCanal, importancia);
+                    canal.setDescription(descripcionCanal);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "canal_id")
-                .setSmallIcon(R.drawable.notification)
-                .setContentTitle("Recordatorio")
-                .setContentText("Tu evento está programado para mañana")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
+                    notificationManager.createNotificationChannel(canal);
+                }
 
-        fechaNotificacion.add(Calendar.DAY_OF_MONTH, -1);
-        long tiempoNotificacion = fechaNotificacion.getTimeInMillis();
+                CalendarEntrega.add(Calendar.DAY_OF_MONTH, -1);
+                long tiempoNotificacion = CalendarEntrega.getTimeInMillis();
 
-        Intent intent = new Intent(requireContext(), NotificationReceiver.class);
-        int requestCode = 1;
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
+                // Agrega un log para verificar si la notificación se programa correctamente
+                Log.d("Notificacion", "Tiempo de notificación: " + tiempoNotificacion);
 
-        AlarmManager alarmManager = (AlarmManager) requireContext().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC, tiempoNotificacion, pendingIntent);
+                Intent intent = new Intent(requireContext(), NotificationReceiver.class);
+                int requestCode = 1;
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
 
-        int notificationId = 1;
-        notificationManager.notify(notificationId, builder.build());
-    }
+                // Construye el objeto NotificationCompat.Builder
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), "canal_id")
+                        .setSmallIcon(R.drawable.notification)
+                        .setContentTitle("Recordatorio")
+                        .setContentText("Tu evento está programado para mañana")
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setAutoCancel(true);
+
+                // Configura el tiempo de la notificación
+                builder.setWhen(tiempoNotificacion);
+
+                int notificationId = 1;
+                notificationManager.notify(notificationId, builder.build());
+            }
 
 }

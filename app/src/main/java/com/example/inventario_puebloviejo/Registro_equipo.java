@@ -1,7 +1,8 @@
 package com.example.inventario_puebloviejo;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-
+import android.content.Context;
 
 import com.example.inventario_puebloviejo.databinding.ActivityRegistroEquipoBinding;
 import com.example.inventario_puebloviejo.db.DataBase;
@@ -103,8 +104,9 @@ public class Registro_equipo extends AppCompatActivity {
                         boolean correcto = db.insertEquipo(serie, tipo, status, marca, prop, area, fechaSeleccionada);
                         if (correcto) {
                             Toast.makeText(Registro_equipo.this, "Se registró correctamente el equipo", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(Registro_equipo.this, GalleryFragment.class);
-                            startActivity(i);
+
+                            Intent intent = new Intent(Registro_equipo.this, MainActivity.class);
+                            startActivity(intent);
 
                         } else {
                             Toast.makeText(Registro_equipo.this, "Error al registrar el equipo", Toast.LENGTH_SHORT).show();
@@ -155,11 +157,4 @@ public class Registro_equipo extends AppCompatActivity {
         String fechaSeleccionada = sdf.format(calendar.getTime());
         Toast.makeText(this, "Fecha seleccionada: " + fechaSeleccionada, Toast.LENGTH_SHORT).show();
     }
-
-
-
-
-
-
-
 }

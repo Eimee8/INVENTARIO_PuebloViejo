@@ -19,7 +19,6 @@ public class Inicio_Sesion extends AppCompatActivity {
 
      EditText nombre;
      EditText pass;
-
     DataBase db;
     private Button sesion;
 

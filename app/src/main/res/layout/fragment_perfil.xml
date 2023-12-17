@@ -32,9 +32,7 @@
         android:text="Guardar"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="504dp">
-
     </Button>
-
 
     <ImageView
         android:layout_width="60dp"
@@ -48,7 +46,6 @@
         android:src="@drawable/escudo">
     </ImageView>
 
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="60dp"
@@ -59,7 +56,6 @@
         android:layout_marginTop="760dp"
         android:layout_marginEnd="155dp"
         android:src="@drawable/isc">
-
     </ImageView>
 
     <ImageView
@@ -72,7 +68,6 @@
         android:layout_marginTop="760dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/androide">
-
     </ImageView>
 
     <ImageView
@@ -89,7 +84,6 @@
         android:src="@drawable/usuario"
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="16dp">
-
     </ImageView>
 
     <TextView
@@ -131,13 +125,12 @@
         android:drawablePadding="16dp"
         android:hint="Puesto"
         android:padding="15dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="258dp">
-
     </TextView>
 
     <TextView
@@ -155,13 +148,12 @@
         android:drawablePadding="16dp"
         android:hint="Correo Electronico"
         android:padding="15dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="341dp">
-
     </TextView>
 
     <TextView
@@ -180,13 +172,12 @@
         android:hint="Numero Celular"
         android:inputType="number"
         android:padding="15dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="422dp">
-
     </TextView>
 
     <Button
@@ -203,8 +194,8 @@
         android:text="Modificar"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="504dp">
-
     </Button>
+
 </RelativeLayout>
 
 
