@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.example.inventario_puebloviejo.db.AdapterEquipo;
 import com.example.inventario_puebloviejo.db.DataBase;
 import com.example.inventario_puebloviejo.db.Date;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -25,11 +29,21 @@ import java.util.ArrayList;
 import android.os.Environment;
 import android.widget.Toast;
 
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Div;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.UnitValue;
+import com.itextpdf.layout.property.VerticalAlignment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -90,14 +104,52 @@ public class A_Tecnologia extends AppCompatActivity {
         try {
             OutputStream outputStream = getContentResolver().openOutputStream(uri);
             if (outputStream != null) {
-                // Configurar el escritor PDF
+
                 PdfWriter pdfWriter = new PdfWriter(outputStream);
                 PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 
-                // Inicializar el documento iTextPdf
+
                 Document document = new Document(pdfDocument);
 
-                // Agregar el título centrado al documento
+                Table contentTable = new Table(2);
+                contentTable.setWidth(UnitValue.createPercentValue(90));
+                contentTable.setBorder(Border.NO_BORDER);
+
+                Drawable drawableLeft = getResources().getDrawable(R.drawable.escudo);
+                BitmapDrawable bitmapDrawableLeft = (BitmapDrawable) drawableLeft;
+                Bitmap bitmapLeft = bitmapDrawableLeft.getBitmap();
+
+                ByteArrayOutputStream streamLeft = new ByteArrayOutputStream();
+                bitmapLeft.compress(Bitmap.CompressFormat.PNG, 100, streamLeft);
+                byte[] bitmapDataLeft = streamLeft.toByteArray();
+                ImageData imageDataLeft = ImageDataFactory.create(bitmapDataLeft);
+
+                Image imgLeft = new Image(imageDataLeft);
+                imgLeft.setWidth(30);
+
+                Div divLeft = new Div().add(imgLeft);
+                divLeft.setVerticalAlignment(VerticalAlignment.TOP);
+
+
+                Cell cellLeft = new Cell().add(divLeft);
+                cellLeft.setBorder(Border.NO_BORDER);
+                contentTable.addCell(cellLeft);
+
+                Paragraph topCenteredText = new Paragraph("PRESIDENCIA MUNICIPAL");
+                topCenteredText.setTextAlignment(TextAlignment.CENTER);
+                topCenteredText.setBold();
+
+                Cell cellTopCenteredText = new Cell().add(topCenteredText);
+                cellTopCenteredText.setBorder(Border.NO_BORDER);
+
+                cellTopCenteredText.setVerticalAlignment(VerticalAlignment.MIDDLE);
+                cellTopCenteredText.setHorizontalAlignment(HorizontalAlignment.LEFT);
+
+                contentTable.addCell(cellTopCenteredText);
+
+                document.add(contentTable);
+
+
                 Paragraph title = new Paragraph("Reporte de Equipos");
                 title.setTextAlignment(TextAlignment.CENTER);
                 document.add(title);
