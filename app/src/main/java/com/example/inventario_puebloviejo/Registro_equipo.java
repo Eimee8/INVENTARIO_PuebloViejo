@@ -103,8 +103,7 @@ public class Registro_equipo extends AppCompatActivity {
                         boolean correcto = db.insertEquipo(serie, tipo, status, marca, prop, area, fechaSeleccionada);
                         if (correcto) {
                             Toast.makeText(Registro_equipo.this, "Se registró correctamente el equipo", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(Registro_equipo.this, GalleryFragment.class);
-                            startActivity(i);
+
 
                         } else {
                             Toast.makeText(Registro_equipo.this, "Error al registrar el equipo", Toast.LENGTH_SHORT).show();
