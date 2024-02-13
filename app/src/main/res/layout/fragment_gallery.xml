@@ -17,7 +17,7 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="780dp"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +38,6 @@
         android:id="@+id/btnPDFGeneral"
         android:layout_width="189dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="750dp"
         android:layout_marginBottom="56dp"
@@ -54,7 +52,6 @@
         android:id="@+id/btnRegistro"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="225dp"
         android:layout_marginTop="750dp"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
     android:background="@color/gris"
     tools:context=".ui.home.HomeFragment">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -16,10 +16,7 @@
             android:id="@+id/logopie"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="336dp"
             android:src="@drawable/logopie">
@@ -29,14 +26,10 @@
             android:id="@+id/escudo"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
             android:layout_marginStart="335dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="11dp"
             android:src="@drawable/escudo">
-
         </ImageView>
 
         <TextView
@@ -45,23 +38,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:layout_below="@id/equipodecomputo"
             android:text="Control/Gestor"
             android:textColor="@color/black"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            >
+            android:textSize="30sp"
+            android:textStyle="bold">
         </TextView>
 
         <TextView
             android:id="@+id/equipodecomputo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/controlygestor"
             android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="Equipo de Computo"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold">
         </TextView>
 
@@ -69,27 +61,24 @@
             android:id="@+id/uno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/controlygestor"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
-            android:rowCount="4"
-            android:layout_below="@+id/controlygestor">
+            android:rowCount="4">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
-                >
+                app:cardElevation="5dp">
 
                 <ImageView
                     android:id="@+id/egresos"
@@ -101,15 +90,15 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/egresos2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Egresos"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
-
                 </TextView>
             </androidx.cardview.widget.CardView>
 
@@ -131,19 +120,18 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/ingresos">
-
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/ingresos2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Ingresos"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
-
                 </TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
@@ -153,8 +141,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/uno"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
@@ -180,19 +166,18 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/tesoreria">
-
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/tesoreria2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Tesoreria"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
-
                 </TextView>
             </androidx.cardview.widget.CardView>
 
@@ -214,19 +199,18 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/cajas">
-
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/cajas2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Cajas"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
-
                 </TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
@@ -236,8 +220,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/dos"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
@@ -251,7 +233,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -263,19 +245,18 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/catastro">
-
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/catastro2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Catastro"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
-
                 </TextView>
             </androidx.cardview.widget.CardView>
 
@@ -297,17 +278,17 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/contraloria">
-
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/contraloria2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Contraloria"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
 
                 </TextView>
@@ -347,13 +328,14 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/registrocivil2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Registro Civil"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
 
                 </TextView>
@@ -377,17 +359,17 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="-0dp"
                     android:background="@drawable/secretarias">
-
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/secretarias2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Secretarias"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -411,7 +393,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -426,13 +408,14 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/regidores2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Regidores"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -458,14 +441,16 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/areadetecnologia2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="A. Tecnología"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
+
                 </TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
@@ -488,7 +473,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -503,13 +488,14 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/obraspublicas2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Obra Publica"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -535,13 +521,14 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/rrhh2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="RRHH"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -565,7 +552,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -580,13 +567,14 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/religion2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Religión"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -612,13 +600,14 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/mujer2"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Inst. Mujer"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
 
                 </TextView>
@@ -643,7 +632,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -658,13 +647,14 @@
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/comandancia2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Comandancia"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -690,13 +680,14 @@
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/comercio2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Comercio"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -720,7 +711,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -735,13 +726,14 @@
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/alcoholes2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Alcoholes"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -767,13 +759,14 @@
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/panteones2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Panteones"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -797,7 +790,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -812,13 +805,14 @@
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/transparencia2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Transparencia"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -844,13 +838,14 @@
                 </ImageButton>
 
                 <TextView
+                    android:id="@+id/desarrollosocial2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Drllo. Social"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -874,7 +869,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="20dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#30ffffff"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp">
@@ -889,13 +884,14 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/informatica2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="Informática"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
@@ -921,16 +917,17 @@
                 </ImageView>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/trabajosocial2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
-                    android:text="Trabajo Scl"
+                    android:text="Trabajó Scl"
                     android:textColor="@color/design_default_color_on_secondary"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="normal">
                 </TextView>
             </androidx.cardview.widget.CardView>
         </GridLayout>
-    </ScrollView>
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
