@@ -277,7 +277,7 @@ public class GalleryFragment extends Fragment implements CallBack {
             try {
 
                 JSONObject element = jsonArray.getJSONObject(i);
-                System.out.println(element);
+                //System.out.println(element);
                 String n_serie = element.getString("n_serie");
                 String tipo = element.getString("tipo");
                 String estatus =element.getString("estatus");
