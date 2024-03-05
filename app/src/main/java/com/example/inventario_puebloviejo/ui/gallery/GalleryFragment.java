@@ -8,12 +8,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,12 +25,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.inventario_puebloviejo.Equipo.Equipo;
 import com.example.inventario_puebloviejo.R;
 import com.example.inventario_puebloviejo.Registro_equipo;
+import com.example.inventario_puebloviejo.Volley.CallBack;
+import com.example.inventario_puebloviejo.Volley.VolleyGET;
 import com.example.inventario_puebloviejo.databinding.FragmentGalleryBinding;
-import com.example.inventario_puebloviejo.db.AdapterEquipo;
+import com.example.inventario_puebloviejo.Equipo.AdapterEquipo;
 import com.example.inventario_puebloviejo.db.DataBase;
 import com.example.inventario_puebloviejo.db.Date;
+import com.google.android.material.slider.Slider;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -45,12 +51,16 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import com.itextpdf.layout.property.VerticalAlignment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class GalleryFragment extends Fragment {
+public class GalleryFragment extends Fragment implements CallBack {
 
     private static final int REQUEST_CODE_CREATE_PDF = 123;
 
@@ -82,14 +92,16 @@ public class GalleryFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.vEquipo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        queryEquipo();
 
-        adapterEquipo = new AdapterEquipo(db.mostrarEquipos(),getContext());
-        recyclerView.setAdapter(adapterEquipo);
+        /*adapterEquipo = new AdapterEquipo(db.mostrarEquipos(),getContext());
+        recyclerView.setAdapter(adapterEquipo);*/
 
         busqueda = root.findViewById(R.id.Busqueda);
 
         registro = (Button) root.findViewById(R.id.btnRegistro);
-
+        busqueda.addTextChangedListener(txtChanged);
+        /*
         busqueda.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -108,7 +120,7 @@ public class GalleryFragment extends Fragment {
             }
 
         });
-
+*/
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,8 +142,12 @@ public class GalleryFragment extends Fragment {
     }
 
     private void filtrarEquiposPorNombre(String filtro) {
+        /*
         ArrayList<Date> resultados = db.mostrarEquiposPorNombre(filtro);
-        adapterEquipo.actualizarDatos(resultados);
+        if (resultados.size() != 0)
+            adapterEquipo.actualizarDatos(resultados);
+
+         */
     }
 
 
@@ -226,5 +242,77 @@ public class GalleryFragment extends Fragment {
         }
     }
 
+    private TextWatcher txtChanged = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (s != null){
+                ((AdapterEquipo)recyclerView.getAdapter()).searchName(s.toString());
+            }
+                //adapterEquipo.searchName(s.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+
+        }
+    };
+    private void queryEquipo(){
+        String url = "https://inventariopv.estudiasistemas.com/inventory/api.php?tk=220220240740";
+        VolleyGET get = new VolleyGET(url,getContext(),this::callback);
+
+        get.start();
+    }
+
+    private ArrayList<Equipo> jsonToDateArray(JSONArray jsonArray){
+
+        ArrayList<Equipo> list = new ArrayList<>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+
+                JSONObject element = jsonArray.getJSONObject(i);
+                System.out.println(element);
+                String n_serie = element.getString("n_serie");
+                String tipo = element.getString("tipo");
+                String estatus =element.getString("estatus");
+                String marca= element.getString("marca");
+                String propietario= element.getString("propietario");
+                String area = element.getString("area");
+                String fecha_ini = element.getString("fecha_ini");
+                list.add(new Equipo(n_serie,tipo,estatus,marca,propietario,area,fecha_ini));
+
+            } catch (JSONException e) {
+                Log.e("ToList",e.getMessage());
+            }
+        }
+
+        return list;
+    }
+    @Override
+    public void callback(JSONObject jsonObject) {
+        try {
+            String status = jsonObject.getString("status");
+            if(status.equals("200")){
+
+                ArrayList data = jsonToDateArray(jsonObject.getJSONArray("data"));
+                recyclerView.setAdapter(new com.example.inventario_puebloviejo.Equipo.AdapterEquipo(data, getContext()));
+
+            }else if(status.equals("404")){
+                String error = jsonObject.getString("Error");
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+            }else{
+                String error = jsonObject.getString("Error");
+                Log.e("500", error);
+                Toast.makeText(getContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            Log.e("egresos", e.getMessage());
+        }
+    }
 }

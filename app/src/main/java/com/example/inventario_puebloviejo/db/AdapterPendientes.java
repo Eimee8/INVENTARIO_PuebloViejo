@@ -9,15 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.inventario_puebloviejo.Mantenimiento.Mantenimiento;
 import com.example.inventario_puebloviejo.R;
 
 import java.util.ArrayList;
 
 public class AdapterPendientes extends  RecyclerView.Adapter<AdapterPendientes.ViewHolder> {
 
-    static ArrayList<Date>list;
-    public AdapterPendientes(ArrayList<Date> list, Context context) {
+    static ArrayList<Mantenimiento>list;
+    private Context context;
+    public AdapterPendientes(ArrayList<Mantenimiento> list, Context context) {
         this.list = list;
+        this.context = context;
     }
     @NonNull
     @Override

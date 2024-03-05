@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.inventario_puebloviejo.ModificarInformacion;
 import com.example.inventario_puebloviejo.R;
 import com.example.inventario_puebloviejo.db.Date;
 
@@ -65,6 +67,7 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
 
     public static class ViewHolder  extends RecyclerView.ViewHolder{
         private TextView status, tipo, marca, serie, nomarea, fecha, propietario;
+        private ImageView btnModificarDatos;
 
 
         public ViewHolder(@NonNull View View) {
@@ -79,6 +82,17 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
             nomarea = View.findViewById(R.id.nomArea);
             fecha = View.findViewById(R.id.Fecha);
             propietario = View.findViewById(R.id.propietarioEquipo);
+            btnModificarDatos = View.findViewById(R.id.ModificarDatos);
+
+            btnModificarDatos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(android.view.View v) {
+                    Context context = View.getContext();
+                    Intent i = new Intent(context, ModificarInformacion.class);
+                    i.putExtra("n_serie", lista.get(getAdapterPosition()).getN_serie());
+                    context.startActivity(i);
+                }
+            });
 
 
 

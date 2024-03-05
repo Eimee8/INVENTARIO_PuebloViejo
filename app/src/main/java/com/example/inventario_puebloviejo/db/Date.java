@@ -24,6 +24,7 @@ public class Date {
     private String tipo;
     private String area;
 
+
     public Date(){
         this.id = id;
         this.nombre = nombre;

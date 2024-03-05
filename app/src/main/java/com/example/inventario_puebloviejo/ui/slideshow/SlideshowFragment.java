@@ -32,10 +32,15 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.inventario_puebloviejo.BroadcastReceiver;
+import com.example.inventario_puebloviejo.Inicio_Sesion;
 import com.example.inventario_puebloviejo.MainActivity;
+import com.example.inventario_puebloviejo.Mantenimiento.Mantenimiento;
 import com.example.inventario_puebloviejo.NotificationReceiver;
 import com.example.inventario_puebloviejo.R;
 import com.example.inventario_puebloviejo.Registro_equipo;
+import com.example.inventario_puebloviejo.Volley.CallBack;
+import com.example.inventario_puebloviejo.Volley.VolleyGET;
+import com.example.inventario_puebloviejo.Volley.VolleyPOST;
 import com.example.inventario_puebloviejo.databinding.FragmentSlideshowBinding;
 import com.example.inventario_puebloviejo.db.DataBase;
 import com.example.inventario_puebloviejo.db.Date;
@@ -45,6 +50,9 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.TextAlignment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -56,7 +64,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class SlideshowFragment extends Fragment {
+public class SlideshowFragment extends Fragment implements CallBack {
     private static final int REQUEST_CODE_CREATE_PDF = 123;
     Spinner spinnerTipo;
     Spinner spinnerEstatus;
@@ -129,10 +137,13 @@ public class SlideshowFragment extends Fragment {
         Calendar calendarEntrega = Calendar.getInstance();
 
         btnGuardar = root.findViewById(R.id.guardar);
+        btnGuardar.setOnClickListener(clickRegistro);
 
+        /*
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String serie = binding.ingresarid.getText().toString();
                 String descripcion = binding.descripcionAgenda.getText().toString();
                 String tipo = spinnerTipo.getSelectedItem().toString();
@@ -168,8 +179,12 @@ public class SlideshowFragment extends Fragment {
                         }
                     }
                 }
+
+
             }
         });
+        */
+
 
 
         return root;
@@ -290,4 +305,45 @@ public class SlideshowFragment extends Fragment {
                 notificationManager.notify(notificationId, builder.build());
             }
 
+    private View.OnClickListener clickRegistro = (View) ->{
+        String url = "https://inventariopv.estudiasistemas.com/inventory/api.php?tk=280220240957";
+        String n_serie = binding.ingresarid.getText().toString();
+        String tipo = binding.tipo.getText().toString();
+        String estatus = binding.EstatusAgenda.getSelectedItem().toString();
+        String descripcion = binding.descripcionAgenda.getText().toString();
+
+
+        String formatoFecha = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha, Locale.getDefault());
+        String fecha_llegada = sdf.format(calendarLlegada.getTime());
+        String fecha_entrega = sdf.format(calendarEntrega.getTime());
+
+        Mantenimiento mantenimiento = new Mantenimiento(n_serie,tipo,estatus,descripcion,fecha_llegada,fecha_entrega);
+        System.out.println(mantenimiento.toJson());
+
+        VolleyPOST post = new VolleyPOST(url,getContext(), mantenimiento.toJson(), this::callback);
+        post.start();
+    };
+
+    @Override
+    public void callback(JSONObject jsonObject) {
+        try {
+            String status = jsonObject.getString("status");
+            if(status.equals("200")){
+                Toast.makeText(getContext(), "Programado exitosamente", Toast.LENGTH_SHORT).show();
+                programarNotificacion(calendarLlegada);
+                //getActivity().finish();
+            }else if(status.equals("404")){
+                String error = jsonObject.getString("Error");
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+            }else{
+                String error = jsonObject.getString("Error");
+                Log.e("mantenimiento", error);
+                Toast.makeText(getContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            Log.e("Mantenimiento", e.getMessage());
+            //throw new RuntimeException(e);
+        }
+    }
 }

@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class DataBase extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 31;
+    private static final int DATABASE_VERSION = 32;
 
-    private static final String DATABASE_NOMBRE = "DataBasePV.db";
+    private static final String DATABASE_NOMBRE = "estudias_inventariopv.db";
     private static final String TABLE_USUARIO = "Usuario";
 
     private static final String TABLE_DEPARTAMENTO = "Area";
@@ -53,7 +53,6 @@ public class DataBase extends SQLiteOpenHelper {
 
         db.execSQL(INSERT_INITIAL_DATA);
 
-
         db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_DEPARTAMENTO + "("+
                 "id_area INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre_area TEXT NOT NULL," +
@@ -81,6 +80,7 @@ public class DataBase extends SQLiteOpenHelper {
                 "propietario TEXT NOT NULL," +
                 "area TEXT NOT NULL," +
                 "fecha_ini TEXT NOT NULL)");
+
     }
 
     @Override

@@ -19,9 +19,11 @@
         tools:targetApi="31">
         <activity
             android:name=".ModificarInformacion"
+            android:label="Modificar Datos Del Equipo"
             android:exported="false" />
         <activity
             android:name=".Modificar"
+            android:label="Modificar Datos"
             android:exported="false" />
 
         <receiver

@@ -1,5 +1,6 @@
 package com.example.inventario_puebloviejo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,10 +8,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.inventario_puebloviejo.MainActivity;
+import com.example.inventario_puebloviejo.Modificar;
 import com.example.inventario_puebloviejo.R;
 import com.example.inventario_puebloviejo.databinding.FragmentPerfilBinding;
 import com.example.inventario_puebloviejo.db.DataBase;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 
 public class Perfil extends Fragment {
 
+    Button btnmodificar;
     TextView Nombre, Puesto, Correo, Telefono;
     DataBase db;
     private FragmentPerfilBinding binding;
@@ -41,6 +45,16 @@ public class Perfil extends Fragment {
         Puesto = root.findViewById(R.id.Puesto);
         Correo = root.findViewById(R.id.CorreoElectronico);
         Telefono = root.findViewById(R.id.NumeroCelular);
+        btnmodificar = root.findViewById(R.id.btnModificar);
+
+        btnmodificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), Modificar.class);
+                startActivity(i);
+            }
+        });
+
 
     getPerfil();
 

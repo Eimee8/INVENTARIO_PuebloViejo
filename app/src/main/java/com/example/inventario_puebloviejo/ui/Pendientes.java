@@ -10,13 +10,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.inventario_puebloviejo.Equipo.AdapterEquipo;
+import com.example.inventario_puebloviejo.Equipo.Equipo;
+import com.example.inventario_puebloviejo.Inicio_Sesion;
 import com.example.inventario_puebloviejo.MainActivity;
+import com.example.inventario_puebloviejo.Mantenimiento.Mantenimiento;
 import com.example.inventario_puebloviejo.R;
+import com.example.inventario_puebloviejo.Volley.CallBack;
+import com.example.inventario_puebloviejo.Volley.VolleyGET;
 import com.example.inventario_puebloviejo.databinding.FragmentPendientesBinding;
 
 import com.example.inventario_puebloviejo.db.AdapterPendientes;
@@ -28,11 +36,15 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.TextAlignment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
- public class Pendientes extends Fragment {
+ public class Pendientes extends Fragment implements CallBack {
      private static final int REQUEST_CODE_CREATE_PDF = 123;
 
      Button btnPDF;
@@ -50,18 +62,19 @@ import java.util.ArrayList;
         View root= binding.getRoot();
 
         db = new DataBase(this.getContext());
-
+    /*
         date = new ArrayList<>();
         date = db.mostrarEquiposPendientes();
-
+*/
         btnPDF = root.findViewById(R.id.btnPDFPendientes);
 
         recyclerView = root.findViewById(R.id.vPendientes);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
+        queryPendientes();
+        /*
         adapterPendientes = new AdapterPendientes(db.mostrarEquiposPendientes(),getContext());
         recyclerView.setAdapter(adapterPendientes);
-
+*/
         ((MainActivity) requireActivity()).setToolbarTitle("Pendientes");
 
         btnPDF.setOnClickListener(new View.OnClickListener() {
@@ -124,4 +137,63 @@ import java.util.ArrayList;
              e.printStackTrace();
          }
      }
-}
+
+     private void queryPendientes(){
+         String url = "https://inventariopv.estudiasistemas.com/inventory/api.php?tk=280220241053";
+         VolleyGET volleyGET = new VolleyGET(url, getContext(), this::callback);
+         volleyGET.start();
+     }
+
+     /**
+      * Convierte el json consultado en un ArrayList<Equipo>
+      *
+      * @param jsonArray
+      * @return ArrayList<Date>
+      */
+     private ArrayList<Mantenimiento> jsonToDateArray(JSONArray jsonArray){
+
+         ArrayList<Mantenimiento> list = new ArrayList<>();
+
+         for (int i = 0; i < jsonArray.length(); i++) {
+             try {
+
+                 JSONObject element = jsonArray.getJSONObject(i);
+
+                 String n_serie = element.getString("n_serie");
+                 String tipo = element.getString("tipo");
+                 String estatus =element.getString("estatus");
+                 String descripcion = element.getString("descripcion");
+                 String fecha_llegada = element.getString("fecha_llegada");
+                 String fecha_entrega = element.getString("fecha_entrega");
+
+                 list.add(new Mantenimiento(n_serie, tipo, estatus,descripcion, fecha_llegada,fecha_entrega));
+
+             } catch (JSONException e) {
+                 Log.e("ToList",e.getMessage());
+             }
+         }
+
+         return list;
+     }
+
+     @Override
+     public void callback(JSONObject jsonObject) {
+         try {
+             String status = jsonObject.getString("status");
+             if(status.equals("200")){
+                 ArrayList data = jsonToDateArray(jsonObject.getJSONArray("data"));
+                 recyclerView.setAdapter(new AdapterPendientes(data, getContext()));
+
+             }else if(status.equals("404")){
+                 String error = jsonObject.getString("Error");
+                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+             }else{
+                 String error = jsonObject.getString("Error");
+                 Log.e("Login", error);
+                 Toast.makeText(getContext(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+             }
+         } catch (JSONException e) {
+             Log.e("login", e.getMessage());
+         }
+     }
+ }
