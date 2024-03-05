@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Modificar">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/portada"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="760dp"
+        android:src="@drawable/escudo">
+
+    </ImageView>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="760dp"
+        android:src="@drawable/isc">
+
+    </ImageView>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="302dp"
+        android:layout_marginTop="760dp"
+        android:src="@drawable/androide">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/login2"
+        android:layout_width="164dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="123dp"
+        android:src="@drawable/usuario"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="16dp">
+    </ImageView>
+
+    <EditText
+        android:id="@+id/NombreCompleto"
+        android:layout_width="292dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/login2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/gris"
+        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:drawablePadding="16dp"
+        android:hint="Nombre Completo"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="178dp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/Puesto"
+        android:layout_width="292dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/NombreCompleto"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/gris"
+        android:drawableLeft="@drawable/baseline_star_24"
+        android:drawablePadding="16dp"
+        android:hint="Puesto"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="258dp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/CorreoElectronico"
+        android:layout_width="292dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/Puesto"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/gris"
+        android:drawableLeft="@drawable/baseline_alternate_email_24"
+        android:drawablePadding="16dp"
+        android:hint="Correo Electronico"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="341dp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/NumeroCelular"
+        android:layout_width="292dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/CorreoElectronico"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/gris"
+        android:drawableLeft="@drawable/baseline_phone_android_24"
+        android:drawablePadding="16dp"
+        android:hint="Numero Celular"
+        android:inputType="number"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="422dp">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/btnupdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:backgroundTint="@color/teal_700"
+        android:layout_marginStart="153dp"
+        android:layout_marginTop="578dp"
+        android:text="GUARDAR"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
