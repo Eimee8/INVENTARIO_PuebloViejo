@@ -63,10 +63,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_below="@+id/controlygestor"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:columnCount="2"
             android:columnOrderPreserved="false"
             android:rowCount="4">
@@ -918,7 +918,7 @@
 
                 <TextView
                     android:id="@+id/trabajosocial2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
