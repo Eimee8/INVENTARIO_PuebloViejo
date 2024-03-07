@@ -179,7 +179,7 @@ public class Cajas extends AppCompatActivity implements CallBack {
 
 
     private void queryEquipo(){
-        String url = "https://inventariopv.estudiasistemas.com/inventory/api.php?tk=220220240740&area=Ingresos";
+        String url = "https://inventariopv.estudiasistemas.com/inventory/api.php?tk=220220240740&area=Cajas";
         VolleyGET get = new VolleyGET(url, getBaseContext(),this::callback);
         get.start();
     }

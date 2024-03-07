@@ -30,8 +30,8 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
     private  ArrayList<Equipo> lista_espejo;
     private Context context;
     public AdapterEquipo(ArrayList<Equipo> lista, Context context) {
-        this.lista = lista;
-        this.lista_espejo = lista;
+        this.lista = (ArrayList<Equipo>) lista.clone();
+        this.lista_espejo = (ArrayList)lista.clone();
         this.context = context;
     }
 
@@ -43,7 +43,6 @@ public class AdapterEquipo extends RecyclerView.Adapter<AdapterEquipo.ViewHolder
                 notifyItemInserted(lista.size());
             }
         }else{
-            this.lista_espejo = (ArrayList<Equipo>) lista.clone();
             lista.removeIf(e -> !e.getPropietario().contains(pala));
             notifyDataSetChanged();
         }

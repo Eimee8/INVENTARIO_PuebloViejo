@@ -84,11 +84,11 @@ public class GalleryFragment extends Fragment implements CallBack {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        db = new DataBase(this.getContext());
+//        db = new DataBase(this.getContext());
 
-        date = new ArrayList();
+  //      date = new ArrayList();
 
-        date = db.mostrarEquipos();
+    //    date = db.mostrarEquipos();
 
         recyclerView = root.findViewById(R.id.vEquipo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -98,9 +98,8 @@ public class GalleryFragment extends Fragment implements CallBack {
         recyclerView.setAdapter(adapterEquipo);*/
 
         busqueda = root.findViewById(R.id.Busqueda);
-
-        registro = (Button) root.findViewById(R.id.btnRegistro);
         busqueda.addTextChangedListener(txtChanged);
+        registro = (Button) root.findViewById(R.id.btnRegistro);
         /*
         busqueda.addTextChangedListener(new TextWatcher() {
             @Override
@@ -250,7 +249,7 @@ public class GalleryFragment extends Fragment implements CallBack {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (s != null){
+            if (s != null && recyclerView.getAdapter() != null){
                 ((AdapterEquipo)recyclerView.getAdapter()).searchName(s.toString());
             }
                 //adapterEquipo.searchName(s.toString());
@@ -294,6 +293,12 @@ public class GalleryFragment extends Fragment implements CallBack {
 
         return list;
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
     @Override
     public void callback(JSONObject jsonObject) {
         try {
