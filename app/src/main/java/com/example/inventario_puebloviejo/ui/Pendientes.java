@@ -50,6 +50,8 @@ import java.util.ArrayList;
      Button btnPDF;
      DataBase db;
      ArrayList<Date> date;
+     //private ArrayList<Equipo> data;
+     private ArrayList<Mantenimiento> data;
      RecyclerView recyclerView;
      AdapterPendientes adapterPendientes;
      private FragmentPendientesBinding binding;
@@ -120,7 +122,7 @@ import java.util.ArrayList;
                  title.setTextAlignment(TextAlignment.CENTER);
                  document.add(title);
 
-                 for (Date equipo : date) {
+                 for (Mantenimiento equipo : data) {
                      document.add(new Paragraph("Estatus: " + equipo.getEstatus()));
                      document.add(new Paragraph("Tipo: " + equipo.getTipo()));
                      document.add(new Paragraph("Número de Serie: " + equipo.getN_serie()));
@@ -181,7 +183,8 @@ import java.util.ArrayList;
          try {
              String status = jsonObject.getString("status");
              if(status.equals("200")){
-                 ArrayList data = jsonToDateArray(jsonObject.getJSONArray("data"));
+
+                 data = jsonToDateArray(jsonObject.getJSONArray("data"));
                  recyclerView.setAdapter(new AdapterPendientes(data, getContext()));
 
              }else if(status.equals("404")){

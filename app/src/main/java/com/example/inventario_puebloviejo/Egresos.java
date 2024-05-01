@@ -62,6 +62,8 @@ public class Egresos extends AppCompatActivity implements CallBack {
     private static final int REQUEST_CODE_CREATE_PDF = 123;
     DataBase db;
     private ArrayList <Date> date;
+
+    private ArrayList<Equipo> data;
     RecyclerView recyclerView;
 
     EditText busqueda;
@@ -206,12 +208,12 @@ public class Egresos extends AppCompatActivity implements CallBack {
                 document.add(title);
 
                 // Obtener datos de la tabla y agregarlos al documento
-                for (Date equipo : date) {
+                for (Equipo equipo : data) {
                     document.add(new Paragraph("Estatus: " + equipo.getEstatus()));
                     document.add(new Paragraph("Tipo: " + equipo.getTipo()));
                     document.add(new Paragraph("Marca: " + equipo.getMarca()));
                     document.add(new Paragraph("Número de Serie: " + equipo.getN_serie()));
-                    document.add(new Paragraph("Nombre de Área: " + equipo.getNombre_area()));
+                    document.add(new Paragraph("Nombre de Área: " + equipo.getArea()));
                     document.add(new Paragraph("Fecha de Inicio: " + equipo.getFecha_ini()));
                     document.add(new Paragraph("Propietario: " + equipo.getPropietario()));
                     document.add(new Paragraph("----------------------------------------"));
@@ -270,7 +272,7 @@ public class Egresos extends AppCompatActivity implements CallBack {
             String status = jsonObject.getString("status");
             if(status.equals("200")){
 
-                ArrayList data = jsonToDateArray(jsonObject.getJSONArray("data"));
+                data = jsonToDateArray(jsonObject.getJSONArray("data"));
                 recyclerView.setAdapter(new AdapterEquipo(data, this));
 
             }else if(status.equals("404")){

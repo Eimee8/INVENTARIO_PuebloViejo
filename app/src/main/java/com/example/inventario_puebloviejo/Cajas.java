@@ -53,6 +53,8 @@ public class Cajas extends AppCompatActivity implements CallBack {
 
     DataBase db;
     private ArrayList<Date> date;
+
+    private ArrayList<Equipo> data; //<--Declaras este objeto
     RecyclerView recyclerView;
 
     @Override
@@ -158,12 +160,13 @@ public class Cajas extends AppCompatActivity implements CallBack {
                 title.setTextAlignment(TextAlignment.CENTER);
                 document.add(title);
 
-                for (Date equipo : date) {
+                //Cambias el tipo de dato de "Date" a "Equipo" pones ": data"(el nombre del objeto que se declaro al principio)
+                for (Equipo equipo : data) {
                     document.add(new Paragraph("Estatus: " + equipo.getEstatus()));
                     document.add(new Paragraph("Tipo: " + equipo.getTipo()));
                     document.add(new Paragraph("Marca: " + equipo.getMarca()));
                     document.add(new Paragraph("Número de Serie: " + equipo.getN_serie()));
-                    document.add(new Paragraph("Nombre de Área: " + equipo.getNombre_area()));
+                    document.add(new Paragraph("Nombre de Área: " + equipo.getArea()));
                     document.add(new Paragraph("Fecha de Inicio: " + equipo.getFecha_ini()));
                     document.add(new Paragraph("Propietario: " + equipo.getPropietario()));
                     document.add(new Paragraph("----------------------------------------"));
@@ -222,7 +225,8 @@ public class Cajas extends AppCompatActivity implements CallBack {
             String status = jsonObject.getString("status");
             if(status.equals("200")){
 
-                ArrayList data = jsonToDateArray(jsonObject.getJSONArray("data"));
+                //Aqui lo dejas en data (el nombre que se declaro)
+                data = jsonToDateArray(jsonObject.getJSONArray("data"));
                 recyclerView.setAdapter(new AdapterEquipo(data, this));
 
             }else if(status.equals("404")){
